@@ -1,0 +1,726 @@
+%% abtex2-modelo-trabalho-academico.tex, v-1.7.1 laurocesar
+%% Copyright 2012-2013 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro César Araujo. Further information are available on 
+%% http://abntex2.googlecode.com/
+%%
+%% This work consists of the files abntex2-modelo-trabalho-academico.tex
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+% mestrado e trabalhos monograficos em geral) em conformidade com 
+% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+% Apresentacao
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+%%% TeX-command-extra-options: "-aux-directory=metafiles"
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	twoside,			% para impressão em verso e anverso. Oposto a oneside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	french,				% idioma adicional para hifenização
+	spanish,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	hyphens
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{cmap}				% Mapear caracteres especiais no PDF
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{soul}
+% ---
+
+% ---		
+% Posicionar os floats
+% ---
+\usepackage[bottom]{footmisc}
+% http://tex.stackexchange.com/questions/62720/vertical-space-after-algorithm
+% \setlength{\textfloatsep}{1.241\onelineskip}% Remove \textfloatsep
+% \setlength{\floatsep}{1.241\onelineskip}% Remove \textfloatsep
+% \setlength{\intextsep}{1.241\onelineskip}% Remove \textfloatsep
+\setlength{\textfloatsep}{1\baselineskip}% Remove \textfloatsep
+%\setlength{\floatsep}{1\baselineskip}% Remove \textfloatsep
+%\setlength{\intextsep}{1\baselineskip}% Remove \textfloatsep
+		
+% ---
+% Pacotes adicionais
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+\usepackage{siunitx}            % sistema internacional de unidades
+\usepackage{amsmath,amssymb,amsthm} % pacotes matemáticos
+\usepackage{pifont}             % para alguns símbolos especiais
+\usepackage[version=4]{mhchem}  % fórmulas químicas
+\usepackage{tabularx}
+\usepackage{listings}           % para os códigos
+\usepackage{multirow}           % para agrupar linhas em colunas
+\usepackage{pdfpages}
+% ---
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{esint}
+\usepackage{bm}
+\usepackage{float}
+\usepackage[most]{tcolorbox}
+
+%---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf,abnt-etal-text=it]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=black,
+    colframe=black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Definition}{Definição}{%
+  theostyle
+}{def}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newcommand{\R}{\bm{\mathrm{R}}}
+\newcommand{\C}{\bm{\mathrm{C}}}
+\newcommand{\Q}{\bm{\mathrm{Q}}}
+\newcommand{\N}{\bm{\mathrm{N}}}
+\newcommand{\Z}{\bm{\mathrm{Z}}}
+\newcommand{\Pspace}{\bm{\mathrm{P}}}
+\newcommand{\F}{\bm{\mathrm{F}}}
+\newcommand{\fvec}{\bm{\mathrm{F}}}
+\newcommand{\nvec}{\bm{\mathrm{n}}}
+\newcommand{\vvec}{\bm{\mathrm{v}}}
+\newcommand{\Svec}{\bm{\mathrm{S}}}
+\newcommand{\wvec}{\bm{\mathrm{w}}}
+\newcommand{\rvec}{\bm{\mathrm{r}}}
+\newcommand{\xvec}{\bm{\mathrm{x}}}
+\newcommand{\uvec}{\bm{\mathrm{u}}}
+\newcommand{\bvec}{\bm{\mathrm{b}}}
+\newcommand{\ivec}{\bm{\mathrm{i}}}
+\newcommand{\jvec}{\bm{\mathrm{j}}}
+\newcommand{\evec}{\bm{\mathrm{e}}}
+\newcommand{\Jvec}{\bm{\mathrm{J}}}
+\newcommand{\kvec}{\bm{\mathrm{k}}}
+\newcommand{\zerovec}{\bm{\mathrm{zero}}}
+\DeclareMathOperator{\spn}{span}
+
+%\usepackage[margin=1cm]{geometry}
+\theoremstyle{definition}
+% ---
+
+%%% -----
+%%% Formato de cabeçalho/rodapé romano nos elementos pré-textuais
+%%% -----
+
+%% Novo estilo
+\makepagestyle{estilo_pretextual} %%% escolha um nome
+  \makeevenhead{estilo_pretextual}{}{}{\ABNTEXfontereduzida \textbf \thepage}
+  \makeoddhead{estilo_pretextual}{}{}{\ABNTEXfontereduzida \textbf \thepage}
+
+%% Customiza comando \pretextual
+\renewcommand{\pretextual}{
+  \pagenumbering{roman} %%% ou \pagenumbering{Roman}
+  \aliaspagestyle{chapter}{estilo_pretextual}% customizing chapter pagestyle
+  \pagestyle{estilo_pretextual}
+  \aliaspagestyle{cleared}{empty}
+  \aliaspagestyle{part}{estilo_pretextual}
+}
+
+% ---
+% Ajusta a marca \textual para que a numeração volte a ser arábica
+% nos elementos textuais
+\let\oldtextual\textual        % copia o comando \textual anterior para \oldtextual
+\renewcommand{\textual}{%
+  \oldtextual%
+  \pagenumbering{arabic} % volta à numeração arábica
+}
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Uso de um modelo númerico para a otimização das curvas de secagem de concretos aluminosos}
+\autor{Murilo Henrique Moreira}
+\local{São Carlos -- SP}
+\data{2018}
+\orientador{Victor Carlos Pandolfelli}
+\coorientador{Pedro Ivo Batistel Pelissari}
+\instituicao{%
+  Universidade Federal de São Carlos
+  \par
+  Centro de Ciências Exatas e de Tecnologia
+  \par
+  Departamento de Engenharia de Materiais}
+\tipotrabalho{Trabalho de Conclusão de Curso (Graduação)}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Trabalho de conclusão de curso apresentado ao curso de Engenharia de Materiais da Universidade Federal de São Carlos, como requisito parcial à obtenção do título de Bacharel em Engenharia de Materiais. Área de concentração: Cerâmicas.}
+% ---
+
+% ---
+% Nova capa
+% ---
+\renewcommand{\imprimircapa}{%
+\begin{capa}%
+\center
+\large\imprimirinstituicao
+\par
+\vspace*{3cm}
+{\large\imprimirautor}\par
+\vspace*{3cm}
+{\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirtitulo}
+\vfill
+\large\imprimirlocal
+\par
+\large\imprimirdata
+\end{capa}
+}
+% ---
+% Nova folha de rosto
+% ---
+\makeatletter
+\renewcommand{\folhaderostocontent}{
+\thispagestyle{empty}
+\begin{center}
+{\large\imprimirautor}
+\vfill
+{\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirtitulo}\\
+\vspace*{3cm}
+\abntex@ifnotempty{\imprimirpreambulo}{%
+\hspace{.45\textwidth}
+\begin{minipage}{.5\textwidth}
+\SingleSpacing
+\imprimirpreambulo\\
+\par
+\imprimirorientadorRotulo~\imprimirorientador
+\par
+\imprimircoorientadorRotulo~\imprimircoorientador
+\end{minipage}%
+\vfill
+}%
+{\large\imprimirlocal}
+\par
+{\large\imprimirdata}
+\end{center}
+}
+\makeatother
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=black,          	% color of internal links
+    	citecolor=black,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto
+% ---
+
+% ---
+% Inserir a ficha bibliografica
+% ---
+
+% Isto é um exemplo de Ficha Catalográfica, ou ``Dados internacionais de
+% catalogação-na-publicação''. Você pode utilizar este modelo como referência. 
+% Porém, provavelmente a biblioteca da sua universidade lhe fornecerá um PDF
+% com a ficha catalográfica definitiva após a defesa do trabalho. Quando estiver
+% com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
+% o conteúdo de implementação deste arquivo pelo comando abaixo:
+%
+% \begin{fichacatalografica}
+%     \includepdf{fig_ficha_catalografica.pdf}
+% \end{fichacatalografica}
+%\begin{fichacatalografica}
+%	\vspace*{\fill}					% Posição vertical
+%	\hrule							% Linha horizontal
+%	\begin{center}					% Minipage Centralizado
+%	\begin{minipage}[c]{12.5cm}		% Largura
+	
+%	\imprimirautor
+	
+%	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+%	\imprimirlocal, \imprimirdata-
+	
+%	\hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.\\
+	
+%	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
+	
+%	\hspace{0.5cm}
+%	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
+%	\imprimirdata.}\\
+	
+%	\hspace{0.5cm}
+%		1. Cerâmicas macroporosas.
+%		2. Espumas.
+%		3. Arduino.
+%		I. Victor Carlos Pandolfelli.
+%		II. Universidade Federal de São Carlos.
+%		III. Centro de Ciências Exatas e de Tecnologia.
+%		IV. Departamento de Engenharia de Materiais
+%		V. Título\\ 			
+	
+%	\hspace{8.75cm} CDU 02:141:005.7\\
+	
+%	\end{minipage}
+%	\end{center}
+%	\hrule
+%\end{fichacatalografica}
+% ---
+
+% ---
+% Inserir errata
+% ---
+%\begin{errata}
+%Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
+
+%\vspace{\onelineskip}
+
+%FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas apendiculares com reimplantação de enxerto ósseo autólogo autoclavado associado ao plasma rico em plaquetas}: estudo crítico na cirurgia de preservação de membro em cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina Veterinária e Zootecnia, Universidade de São Paulo, São Paulo, 2011.
+
+%\begin{table}[htb]
+%\center
+%\footnotesize
+%\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
+%  \hline
+%   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & \textbf{Leia-se}  \\
+%    \hline
+%    1 & 10 & auto-conclavo & autoconclavo\\
+%   \hline
+%\end{tabular}
+%\end{table}
+
+%\end{errata}
+% ---
+
+% ---
+% Inserir folha de aprovação
+% ---
+
+% Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR
+% 14724/2011 (seção 4.2.1.3). Você pode utilizar este modelo até a aprovação
+% do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
+% imagem da página assinada pela banca com o comando abaixo:
+%
+% \includepdf{folhadeaprovacao_final.pdf}
+%
+% \begin{folhadeaprovacao}
+% \thispagestyle{empty}
+%   \begin{center}
+%     {\large\imprimirautor}
+
+%     \vfill
+%     {\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirtitulo}
+%     \vfill
+    
+%     \hspace{.45\textwidth}
+%     \begin{minipage}{.5\textwidth}
+%         \imprimirpreambulo
+%     \end{minipage}%
+%     \vfill
+%    \end{center}
+    
+%    Trabalho aprovado. \imprimirlocal, 28 de junho de 2018:
+
+%    \assinatura{\textbf{\imprimirorientador}} 
+%    \assinatura{\textbf{Márcio Raymundo Morelli}}
+%    %\assinatura{\textbf{Professor} \\ Convidado 2}
+%    %\assinatura{\textbf{Professor} \\ Convidado 3}
+%    %\assinatura{\textbf{Professor} \\ Convidado 4}
+    
+%     \vfill  
+%    \begin{center}
+%     {\large\imprimirlocal}
+%     \par
+%     {\large\imprimirdata}
+%   \end{center}
+  
+% \end{folhadeaprovacao}
+% ---
+
+% ---
+% Dedicatória
+% ---
+\begin{dedicatoria}
+   \vspace*{\fill}
+   \centering
+   \noindent
+   \textit{Dedico esse trabalho aos meus pais, amigos e todos aqueles que me inspiram.} \vspace*{\fill}
+\end{dedicatoria}
+% ---
+
+% ---
+% Agradecimentos
+% ---
+\begin{agradecimentos}
+
+Agradeço primeiramente aos meus pais, Margaret e Luiz, por todo o ensino de
+responsabilidade e disciplina essenciais para alcançar meus objetivos, ao
+carinho e amizade. À minha companheira e melhor amiga Mariana, pelo suporte,
+atenção e ajuda em todos os momentos.
+
+Agradeço ao Departamento de Engenharia de Materiais, pela qualidade de ensino e
+inspiração que tanto professores reconhecidos proporcionam.
+
+Ao Prof. Pandolfelli pela orientação cuidadosa ao longo de 5 anos de graduação, que sempre
+auxiliou e ajudou as melhores tomadas de decisão, sendo um verdadeiro mentor e proporcionando
+crescimento profissional e pessoal, estando sempre disponível para ajudar.
+
+Agradeço especialmente ao meu coorientador, Pedro, por todos os ensinamentos,
+ideias e amizade.
+
+Agradeço também a todos do Grupo de Engenharia de Microestrutura de Materiais,
+pelo suporte e parceria. Ao técnico Guilherme por estar sempre disponível.
+
+E aos meus amigos e colegas de curso, com os quais compartilho grandes memórias,
+Rodrigo, Murilo e tantos outros. 
+
+\end{agradecimentos}
+% ---
+
+% ---
+% Epígrafe
+% ---
+\begin{epigrafe}
+    \vspace*{\fill}
+	\begin{flushright}
+		\textit{``Simplicidade é a conquista final.\\ Depois de uma vasta quantidade
+      de notas e mais notas, \\ é a simplicidade que surge como a recompensa
+      máxima da arte.''\\
+		Frédéric Chopin}
+	\end{flushright}
+\end{epigrafe}
+% ---
+
+% ---
+% RESUMOS
+% ---
+
+% resumo em português
+\begin{resumo}
+
+
+ \vspace{\onelineskip}
+    
+ \noindent
+ \textbf{Palavras-chaves}: Concretos Refratários, Explosão, Modelo Numérico, FEM, FEniCS.
+\end{resumo}
+
+% resumo em inglês
+\begin{resumo}[Abstract]
+ \begin{otherlanguage*}{english}
+ 
+
+   \vspace{\onelineskip}
+ 
+   \noindent 
+   \textbf{Key-words}: Refractory Castable, Spalling, Numerical Model, FEM, FEniCS.
+   
+ \end{otherlanguage*}
+\end{resumo}
+
+% resumo em francês 
+%\begin{resumo}[Résumé]
+% \begin{otherlanguage*}{french}
+%    Il s'agit d'un résumé en français.
+ 
+%   \vspace{\onelineskip}
+ 
+%   \noindent
+%   \textbf{Mots-clés}: latex. abntex. publication de textes.
+% \end{otherlanguage*}
+%\end{resumo}
+
+% resumo em espanhol
+%\begin{resumo}[Resumen]
+% \begin{otherlanguage*}{spanish}
+%   Este es el resumen en español.
+  
+%   \vspace{\onelineskip}
+ 
+%   \noindent
+%   \textbf{Palabras clave}: latex. abntex. publicación de textos.
+% \end{otherlanguage*}
+%\end{resumo}
+% ---
+
+% ---
+% inserir lista de ilustrações
+% ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+%\begin{siglas}
+%  \item[Fig.] Area of the $i^{th}$ component
+%  \item[456] Isto é um número
+%  \item[123] Isto é outro número
+%  \item[lauro cesar] este é o meu nome
+%\end{siglas}
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+%\begin{simbolos}
+%  \item[$ \Gamma $] Letra grega Gama
+%  \item[$ \Lambda $] Lambda
+%  \item[$ \zeta $] Letra grega minúscula zeta
+%  \item[$ \in $] Pertence
+%\end{simbolos}
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introdução
+% ----------------------------------------------------------
+\chapter{Introdução} \label{introducao}
+
+\include{introducao}
+
+% ----------------------------------------------------------
+% Fundamentação teórica
+% ----------------------------------------------------------
+
+\chapter{Fundamentação teórica} \label{fundteorica}
+\input{monoliticos}
+\input{secagem}
+\input{modelos}
+\input{fem}
+
+% ----------------------------------------------------------
+% Materiais e métodos
+% ----------------------------------------------------------
+\chapter{Materiais e métodos} \label{metodologia}
+\include{materiais}
+
+% ----------------------------------------------------------
+% Resultados e discussão
+% ----------------------------------------------------------
+
+\chapter{Resultados e discussão} \label{results}
+\include{resultados}
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+\bookmarksetup{startatroot}% 
+% ---
+
+% ---
+% Conclusão
+% ---
+\chapter{Considerações finais} \label{conclusao}
+\include{conclusao}
+
+-
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{bibliografia}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+\begin{apendicesenv}
+
+\include{apendices}
+
+\end{apendicesenv}
+% ---
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+\begin{anexosenv}
+
+\include{anexos}
+
+\end{anexosenv}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+
+\printindex
+
+\end{document}

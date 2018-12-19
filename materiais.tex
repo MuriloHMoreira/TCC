@@ -1,0 +1,76 @@
+A proposta deste trabalho é desenvolver um sistema de caracterização de espumas baseado em medidas da fração de líquido e altura da espuma com o tempo. Para isso, foram utilizados sensores resistivos de umidade do solo (YL-69) e um sensor ultrassônico (HC-SR04). O desenvolvimento do projeto pode ser dividido em 5 partes:
+
+\begin{enumerate}[label=\itshape\roman*]
+
+\item \textit{Desenvolvimento do circuito:} acoplamento de todos os sensores às portas do Arduino, com o uso de uma \textit{protoboard} e \textit{jumpers}, e do Arduino ao computador para alimentação, carregamento do \textit{software} e coleta de dados;
+
+\item \textit{Desenvolvimento do software:} programação de um código capaz de controlar o \textit{hardware} do sistema, coletando os dados dos sensores e realizando os cálculos necessários;
+
+\item \textit{Construção do protótipo:} foi utilizado um tubo de PVC com alguns entalhes para encaixar os sensores de umidade do solo;
+
+\item \textit{Realização de testes:} algumas espumas foram caracterizadas com o proposto sistema, a fim de validar suas funcionalidades;
+
+\item \textit{Análise de resultados:} os resultados dos testes realizados na quarta etapa foram analisados e interpretados.
+
+\end{enumerate}
+
+        
+\section{Caracterização Experimental}\label{mat:exp}
+Teste 1
+
+    \subsection{Porosidade Aparente}\label{mat:porosidade}
+    Teste a
+
+    \subsection{Permeabilidade}\label{mat:perm}
+    Teste b
+
+    \subsection{Resistência Mecânica}\label{mat:rm}
+    Teste c
+
+    \subsection{TGA}\label{mat:TGA}
+    Teste d
+
+    \subsection{Condutividade Térmica}\label{mat:condutividade}
+    Teste e
+
+
+\section{Desenvolvimento do modelo em FEniCS}\label{mat:fenics}
+Teste 2
+
+    \begin{lstlisting}
+    digitalWrite(sensorVCC1, HIGH);
+    delay(10000);
+    sensorValue1 = analogRead(sensorPin1);
+    digitalWrite(sensorVCC1, LOW);
+    Serial.print(sensorValue1);
+
+    digitalWrite(trigger, LOW);
+    delayMicroseconds(2);
+    digitalWrite(trigger, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigger, LOW);
+    delayMicroseconds(2);
+    time=pulseIn(echo, HIGH);
+    distance = time*340/20000;
+
+    delay(600000);
+    \end{lstlisting}
+
+    
+    \subsection{Geometria e Condições de Contorno}\label{mat:geo_bcs}
+    Teste 3
+
+    \subsection{Sistema de Equações}\label{mat:eqs}
+    Teste 4
+
+    \subsubsection{Forma Forte}\label{mat:forte}
+    Teste a
+
+    \subsubsection{Forma Fraca}\label{mat:fraca}
+    Teste a
+
+    \subsection{Estrutura do script}\label{mat:script}
+    Teste 5
+
+    \subsection{Pós-processamento}
+    Teste 6
