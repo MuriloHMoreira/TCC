@@ -1,35 +1,16 @@
 \section{Método dos Elementos Finitos (FEM)}\label{fem}
-A presente seção busca introduzir alguns dos importantes conceitos referentes ao
-método dos elementos finitos. Busca-se balancear a exposição de conceitos
-fundamentais com uma maneira sintética de expor tais ideias de modo a ser
-conciso e didático. Para mais informações refere-se a \cite{langtangen2017}
-livro base onde a estrutura da presente seção foi baseada.
+A presente seção busca introduzir alguns dos importantes conceitos referentes ao Método dos Elementos Finitos (FEM). Busca-se balancear a exposição de conceitos fundamentais com uma maneira sintética de expor tais ideias de modo a ser conciso e didático. Para mais informações refere-se a \cite{langtangen2017}, livro base onde a estrutura da presente seção foi baseada.
 
-As equações diferenciais são as representações mais importantes de fenômenos
-físicos. A descrição de taxas temporais ou de gradientes espaciais levam em
-consideração a ideia do efeito que um pequeno diferencial em uma variável
-independente (tempo, dimensão em $x$, $y$, ou $z$) tem em uma variável
-dependente (temperatura, campo elétrico, magnético, tensão mecânica, etc.).
+O procedimento padrão para a modelagem matemática de fenômenos físicos parte de Leis Fundamentais da física (como as leis de conservação de massa, $\mathcal{M}$, momento, $\mathcal{P}$, e energia interna, $\mathcal{H}$) e de propriedades características representadas por equações constitutivas (como a Lei de Hooke em elasticidade linear e a Lei de Fourier em transferência de energia térmica). O presente trabalho envolverá a resolução de um sistema de equações diferenciais parciais resultantes de duas equações de conservação (são elas, conservação de massa, $\mathcal{M}$, e de energia interna, $\mathcal{H}$) e diversas equações de estado, entre elas as curvas de sorção isotérmicas, $\phi = f(P, T)$, a Lei de Fourier para a descrição do fluxo de calor, $\vec{q}_\mathcal{H} = - k \nabla T$ e a Lei de Darcy para a descrição do fluxo de massa, $\vec{q}_\mathcal{M} = -  \frac{\kappa}{\mu} \nabla P$ (Mais detalhes em \ref{modelos}).
 
-Tais equações podem ser classificadas em equações diferencias ordinárias (ODE)
-quando se tem apenas funções de uma única variável e suas derivadas, ou em
-equações diferencias parciais (PDE) quando se tem funções de várias variáveis e
-suas derivadas parciais.
+As equações diferenciais são os objetos matemáticos mais importantes para a representação matemática de fenômenos físicos tendo, inclusive, seu desenvolvimento matemático (em termos de terminologia e técnicas de resolução)  baseado nos problemas físicos referentes a cada conjunto de equações \cite{Zauderer2006}. A descrição de taxas temporais ou de gradientes espaciais levam em consideração a ideia do efeito que um pequeno diferencial em uma variável independente (tempo, dimensão em $x$, $y$, ou $z$) tem em uma variável dependente (temperatura, campo elétrico, magnético, tensão mecânica, etc.), com isso permitindo a descrição de fenômenos no tempo e espaço (por exemplo, como varia a temperatura $T$ em um pequeno diferencial $\partial x$).
 
-No geral, as ODE's lineares podem ser resolvidas analiticamente, isto é, é
-possível obter sua solução em uma forma fechada (uma expressão matemática que
-pode ser avaliada em um número finito de operações). Por outro lado, as PDE's
-muitas vezes exigem procedimentos de solução mais complexos, fazendo uso de
-expansões em séries, análises de similaridade e análises assintóticas. Uma grande
-complicação de tais métodos é que em geral funcionam apenas para geometrias e
-condições de contorno relativamente simplistas.
+Tais equações podem ser classificadas em equações diferencias ordinárias (ODE) quando se tem apenas funções de uma única variável independente e suas derivadas, ou em equações diferencias parciais (PDE) quando se tem funções de várias variáveis independentes e suas respectivas derivadas parciais.
 
-Como alternativa a tais métodos e através do avanço da capacidade computacional
-os métodos numéricos alcançaram uma elevada relevância. O desenvolvimento de
-\textit{softwares} comerciais permitiram que tais métodos fossem popularizados
-entre usuários sem que estes precisem saber todos os detalhes da metodologia.
-Porém, tais \textit{softwares} se especializaram em análises mais populares como
-por exemplo cálculos de análises estruturais e da equação de calor. Dessa forma, casos mais
+No geral, as ODE's lineares podem ser resolvidas analiticamente, isto é, é possível obter sua solução em uma forma fechada (uma expressão matemática que pode ser avaliada em um número finito de operações). Por outro lado, as PDE's muitas vezes exigem procedimentos de solução mais complexos, fazendo uso de expansões em séries, análises de similaridade e análises assintóticas. Uma grande
+complicação de tais métodos é que em geral funcionam apenas para geometrias e condições de contorno relativamente simplistas.
+
+Como alternativa a tais métodos e através do avanço da capacidade computacional os métodos numéricos alcançaram uma elevada relevância. O desenvolvimento de \textit{softwares} comerciais permitiram que tais métodos fossem popularizados mesmo entre usuários sem conhecimento dos detalhes da implementação de tais metodologias. Naturalmente tais \textit{softwares} se especializaram em análises mais populares como por exemplo cálculos de análises estruturais, análises térmicas e fluído-dinamicasa. Dessa forma, casos mais
 complicados onde se tem o acoplamento de situações relativamente incomuns (como
 o acoplamento do transporte de massa e de energia) não são implementados.
 
