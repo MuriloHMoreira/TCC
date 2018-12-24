@@ -297,9 +297,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="39.809639"
-     inkscape:cy="94.287134"
+     inkscape:zoom="2.8"
+     inkscape:cx="151.91895"
+     inkscape:cy="129.36454"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -386,5 +386,39 @@
        clip-path="url(#clipPath1119)"
        id="g1115"
        transform="matrix(0.35277777,0,0,-0.35277777,-181.73171,297.53508)" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.78755218;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4578"
+       width="83.721725"
+       height="2.5513394"
+       x="55.366627"
+       y="25.76066"
+       ry="1.2756697" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.6619879;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4578-6"
+       width="59.153843"
+       height="2.5513194"
+       x="26.327183"
+       y="-57.321697"
+       ry="1.2756597"
+       transform="matrix(0.00791466,0.99996868,-0.99999267,0.00382914,0,0)" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.65986961;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4578-6-6"
+       width="58.775879"
+       height="2.5513194"
+       x="27.324759"
+       y="-138.77931"
+       ry="1.2756597"
+       transform="matrix(0.00796556,0.99996827,-0.99999276,0.00380467,0,0)" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.78168744;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4578-9"
+       width="82.479446"
+       height="2.5513394"
+       x="56.32719"
+       y="83.575394"
+       ry="1.2756697" />
   </g>
 </svg>
