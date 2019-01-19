@@ -47,7 +47,7 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
-.bibliography
+
 
 # Translations
 *.mo
@@ -102,3 +102,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Bibliography
+bibliography/
