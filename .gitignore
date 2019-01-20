@@ -122,7 +122,8 @@ ENV/
 *-blx.aux
 *-blx.bib
 *.run.xml
-
+*.brf
+*.idx
 
 *.fdb_latexmk
 *.synctex
