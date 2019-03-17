@@ -106,11 +106,17 @@ Assim, justifica-se o desenvolvimento de um modelo através da metodologia dos e
     Cartesianas.  \label{fig:2dvecs}}
   \end{figure}
 
-  É evidente que a melhor aproximação $\uvec_{optimum}$ resulta no erro de menor norma Euclidiana (comprimento do vetor, seguindo a definição de uma norma em um espaço vetorial Euclidiano), entretanto observe também que o erro ótimo, $\evec_{optimum}$ é perpendicular a reta onde reside o vetor $\uvec$ que estamos tentando aproximar. Lembrando-se da Geometria Analítica, quando dois vetores
-  são perpendiculares seu produto interno é nulo.
-  
- O russo Boris Galerkin usou o mesmo  princípio para obter a solução de equações
- diferenciais, definindo o método de Galerkin \cite{reddy1993introduction}.
+  É evidente que a melhor aproximação $\uvec_{optimum}$ resulta no erro de menor
+  norma Euclidiana (comprimento do vetor, seguindo a definição de uma norma em
+  um espaço vetorial Euclidiano), entretanto observe também que o erro ótimo,
+  $\evec_{optimum}$ é perpendicular a reta onde reside o vetor $\uvec$ que
+  estamos tentando aproximar. Lembrando-se da Geometria Analítica, quando dois
+  vetores são perpendiculares seu produto interno é nulo.  
+
+  O russo Boris Galerkin usou o mesmo  princípio para obter a solução de equações
+  diferenciais, definindo o método de Galerkin \cite{reddy1993introduction}. É
+  importante notar que seja na aproximação de vetores em 2D, vetores gerais ou
+  funções ambas metodologias (dos mínimos quadrados e da projeção) são equivalentes.
   
 	\subsection{Funções de forma}
 	Como visto, anteriormente nos exemplos de vetores de duas dimensões no espaço
@@ -144,7 +150,8 @@ Assim, justifica-se o desenvolvimento de um modelo através da metodologia dos e
   complexos de uma maneira sistemática onde a convergência é obtida conforme a
   malha se torna mais refinada (isto é, com maior número de elementos
   representando o domínio) além de se obter, matrizes que são
-  positivas-definidas durante a resolução numérica o que facilita tal processo.
+  diagonais durante a resolução numérica o que facilita tal processo.
+
 
     \subsubsection{Malha}
     	A malha é uma partição do domínio em elementos cuja intersecção é nula e cuja união resulta exatamente no domínio. O conceito mais generalizado de um elemento finito é apresentado na Definição \ref{def:elemento}.
@@ -166,12 +173,34 @@ Assim, justifica-se o desenvolvimento de um modelo através da metodologia dos e
       \end{itemize}
       \end{Definition}
 
-    A princípio pode-se parecer que tais definições acabem tornando o método apenas mais complexo e abstrato. Porém, tal abstração garante que a  metodologia de resolução no elemento seja feita individualmente elemento a elemento (inclusive usando o mesmo procedimento, pois usa-se o mesmo elemento de coordenadas de referência) sem considerar as especificidades referentes a geometria. Após o cálculo em cada elemento se realiza o processo de \textit{assembly} onde se une as informações de cada elemento obtendo os graus de liberdade em todo domínio.
-    
-    Uma vez definido a malha e os elementos a resolução do sistema de equações  pode ser montado a partir da forma variacional do problema. A seção seguinte traz o conceito de forma variacional.
+    A princípio pode-se parecer que tais definições acabem tornando o método
+    apenas mais complexo e abstrato. Porém, tal abstração garante que a
+    metodologia de resolução no elemento seja feita individualmente elemento a
+    elemento (inclusive usando o mesmo procedimento, pois usa-se o mesmo
+    elemento de coordenadas de referência) sem considerar as especificidades
+    referentes a geometria. Após o cálculo em cada elemento se realiza o
+    processo de \textit{assembly} onde se une as informações de cada elemento
+    obtendo os graus de liberdade em todo domínio.
+
+    Uma vez definido a malha e os elementos a resolução do sistema de equações
+    pode ser montado a partir da forma variacional do problema.
 
     \subsection{Forma variacional}
-    Para poder utilizar o método de Galerkin o problema precisa ser reformulado de uma maneira específica, chamada de "Forma Fraca" ou "Forma variacional". Essa reformulação é o "preço" a ser pago para poder resolver um problema definido em um espaço com dimensões infinitas (o espaço do problema físico em si, definido através das leis fundamentais e equações de estado) em um espaço de dimensões finitas (o subespaço onde se encontrará a solução).
+        Para poder utilizar o método de Galerkin o problema precisa ser reformulado
+    de uma maneira específica, chamada de "Forma Fraca" ou "Forma variacional".
+    Essa reformulação é o "preço" a ser pago para poder resolver um problema
+    definido em um espaço com dimensões infinitas (o espaço do problema físico
+    em si, definido através das leis fundamentais e equações de estado) em um
+    espaço de dimensões finitas (o subespaço onde se encontrará a solução).
+
+    Para ilustrar o conceito a subseção seguinte descreve um exemplo de
+    aproximação de uma função e de uma equação diferencial.
+
+    \subsection{Exemplos ilustrativos de aproximação de funções e equações
+      diferenciais}
+
+    
+   
 
 %%% Local Variables:
 %%% mode: latex
