@@ -1,0 +1,39 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+      \PYG{c+c1}{\PYGZsh{} Mesh and Boundaries Condition Definitions}
+      \PYG{n}{mesh} \PYG{o}{=} \PYG{n}{RectangleMesh}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{,} \PYG{l+m+mf}{0.0}\PYG{p}{,} \PYG{n}{lx}\PYG{p}{,} \PYG{n}{ly}\PYG{p}{,} \PYG{n}{Nx}\PYG{p}{,} \PYG{n}{Ny}\PYG{p}{)}
+
+      \PYG{c+c1}{\PYGZsh{} Boundaries}
+      \PYG{n}{boundaries} \PYG{o}{=} \PYG{n}{MeshFunction}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}size\PYGZus{}t\PYGZsq{}}\PYG{p}{,} \PYG{n}{mesh}\PYG{p}{,} \PYG{n}{mesh}\PYG{o}{.}\PYG{n}{topology}\PYG{p}{()}\PYG{o}{.}\PYG{n}{dim}\PYG{p}{()} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)}
+      \PYG{n}{boundaries}\PYG{o}{.}\PYG{n}{set\PYGZus{}all}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+
+
+      \PYG{k}{class} \PYG{n+nc}{left}\PYG{p}{(}\PYG{n}{SubDomain}\PYG{p}{):}
+          \PYG{k}{def} \PYG{n+nf}{inside}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{on\PYGZus{}boundary}\PYG{p}{):}
+              \PYG{k}{return} \PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])} \PYG{o}{\PYGZlt{}} \PYG{n}{DOLFIN\PYGZus{}EPS} \PYG{o+ow}{and} \PYG{n}{on\PYGZus{}boundary}
+
+
+      \PYG{k}{class} \PYG{n+nc}{right}\PYG{p}{(}\PYG{n}{SubDomain}\PYG{p}{):}
+          \PYG{k}{def} \PYG{n+nf}{inside}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{on\PYGZus{}boundary}\PYG{p}{):}
+              \PYG{k}{return} \PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{lx}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{n}{DOLFIN\PYGZus{}EPS} \PYG{o+ow}{and} \PYG{n}{on\PYGZus{}boundary}
+
+
+      \PYG{k}{class} \PYG{n+nc}{top}\PYG{p}{(}\PYG{n}{SubDomain}\PYG{p}{):}
+          \PYG{k}{def} \PYG{n+nf}{inside}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{on\PYGZus{}boundary}\PYG{p}{):}
+              \PYG{k}{return} \PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{ly}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{n}{DOLFIN\PYGZus{}EPS} \PYG{o+ow}{and} \PYG{n}{on\PYGZus{}boundary}
+
+
+      \PYG{k}{class} \PYG{n+nc}{down}\PYG{p}{(}\PYG{n}{SubDomain}\PYG{p}{):}
+          \PYG{k}{def} \PYG{n+nf}{inside}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{on\PYGZus{}boundary}\PYG{p}{):}
+              \PYG{k}{return} \PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{])} \PYG{o}{\PYGZlt{}} \PYG{n}{DOLFIN\PYGZus{}EPS} \PYG{o+ow}{and} \PYG{n}{on\PYGZus{}boundary}
+
+
+      \PYG{n}{left} \PYG{o}{=} \PYG{n}{left}\PYG{p}{()}
+      \PYG{n}{right} \PYG{o}{=} \PYG{n}{right}\PYG{p}{()}
+      \PYG{n}{top} \PYG{o}{=} \PYG{n}{top}\PYG{p}{()}
+      \PYG{n}{down} \PYG{o}{=} \PYG{n}{down}\PYG{p}{()}
+      \PYG{n}{left}\PYG{o}{.}\PYG{n}{mark}\PYG{p}{(}\PYG{n}{boundaries}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
+      \PYG{n}{right}\PYG{o}{.}\PYG{n}{mark}\PYG{p}{(}\PYG{n}{boundaries}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+      \PYG{n}{top}\PYG{o}{.}\PYG{n}{mark}\PYG{p}{(}\PYG{n}{boundaries}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+      \PYG{n}{down}\PYG{o}{.}\PYG{n}{mark}\PYG{p}{(}\PYG{n}{boundaries}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}
+      \PYG{n}{ds} \PYG{o}{=} \PYG{n}{Measure}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}ds\PYGZdq{}}\PYG{p}{,} \PYG{n}{domain}\PYG{o}{=}\PYG{n}{mesh}\PYG{p}{,} \PYG{n}{subdomain\PYGZus{}data}\PYG{o}{=}\PYG{n}{boundaries}\PYG{p}{)}
+\end{Verbatim}

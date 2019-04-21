@@ -28,7 +28,6 @@
 % ------------------------------------------------------------------------
 % ------------------------------------------------------------------------
 
-%%% TeX-command-extra-options: "-aux-directory=metafiles"
 \documentclass[
 	% -- opções da classe memoir --
 	12pt,				% tamanho da fonte
@@ -45,7 +44,8 @@
 	french,				% idioma adicional para hifenização
 	spanish,			% idioma adicional para hifenização
 	brazil,				% o último idioma é o principal do documento
-	hyphens
+	hyphens,
+  oldfontcommands
 	]{abntex2}
 
 
@@ -60,6 +60,7 @@
 \usepackage{lmodern}			% Usa a fonte Latin Modern			
 \usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
 \usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{minted}
 \usepackage{lastpage}			% Usado pela Ficha catalográfica
 \usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
 \usepackage{color}				% Controle das cores
@@ -70,6 +71,8 @@
 \usepackage{pdflscape}
 \usepackage{afterpage}
 \usepackage{capt-of}
+\usepackage{subcaption}
+
 % ---
 
 % ---		
@@ -93,7 +96,7 @@
 \usepackage{pifont}             % para alguns símbolos especiais
 \usepackage[version=4]{mhchem}  % fórmulas químicas
 \usepackage{tabularx}
-\usepackage{listings}           % para os códigos
+%\usepackage{listings}           % para os códigos
 \usepackage{multirow}           % para agrupar linhas em colunas
 \usepackage{pdfpages}
 % ---
@@ -105,6 +108,13 @@
 \usepackage{esint}
 \usepackage{bm}
 \usepackage{float}
+ 
+% This will add the units
+%----------------------------------------------
+\newcommand{\nomunit}[1]{%
+\renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+%----------------------------------------------
+ 
 \usepackage[most]{tcolorbox}
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 %---
@@ -132,7 +142,8 @@
 	\else
 		Citado #1 vezes nas páginas #2.%
 	\fi}%
-
+\usemintedstyle{monokai}
+\definecolor{bg}{HTML}{282828}
 \tcbset{theostyle/.style={
     enhanced,
     sharp corners,
@@ -601,24 +612,24 @@ Rodrigo, Murilo e tantos outros.
 % ---
 % inserir lista de abreviaturas e siglas
 % ---
-%\begin{siglas}
-%  \item[Fig.] Area of the $i^{th}$ component
-%  \item[456] Isto é um número
-%  \item[123] Isto é outro número
-%  \item[lauro cesar] este é o meu nome
-%\end{siglas}
-% ---
+\begin{siglas}
+  \item[Fig.] Area of the $i^{th}$ component
+  \item[456] Isto é um número
+  \item[123] Isto é outro número
+  \item[lauro cesar] este é o meu nome
+\end{siglas}
 
 % ---
 % inserir lista de símbolos
 % ---
-%\begin{simbolos}
-%  \item[$ \Gamma $] Letra grega Gama
-%  \item[$ \Lambda $] Lambda
-%  \item[$ \zeta $] Letra grega minúscula zeta
-%  \item[$ \in $] Pertence
-%\end{simbolos}
-% ---
+\begin{simbolos}
+  \item[$ \Gamma $] Letra grega Gama
+  \item[$ \Lambda $] Lambda
+  \item[$ \zeta $] Letra grega minúscula zeta
+  \item[$ \in $] Pertence
+\end{simbolos}
+
+%---
 
 % ---
 % inserir o sumario
@@ -734,3 +745,7 @@ Rodrigo, Murilo e tantos outros.
 \printindex
 
 \end{document}
+
+% Local Variables:
+% TeX-command-extra-options: "-shell-escape"
+% End:

@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+     \PYG{c+c1}{\PYGZsh{} Mixed element and space functions definition}
+     \PYG{n}{P1} \PYG{o}{=} \PYG{n}{FiniteElement}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}P\PYGZsq{}}\PYG{p}{,} \PYG{n}{mesh}\PYG{o}{.}\PYG{n}{ufl\PYGZus{}cell}\PYG{p}{(),} \PYG{l+m+mi}{1}\PYG{p}{)}
+     \PYG{n}{element} \PYG{o}{=} \PYG{n}{MixedElement}\PYG{p}{([}\PYG{n}{P1}\PYG{p}{,} \PYG{n}{P1}\PYG{p}{])}
+     \PYG{n}{V} \PYG{o}{=} \PYG{n}{FunctionSpace}\PYG{p}{(}\PYG{n}{mesh}\PYG{p}{,} \PYG{n}{element}\PYG{p}{)}
+     \PYG{n}{v\PYGZus{}1}\PYG{p}{,} \PYG{n}{v\PYGZus{}2} \PYG{o}{=} \PYG{n}{TestFunctions}\PYG{p}{(}\PYG{n}{V}\PYG{p}{)}
+     \PYG{n}{u} \PYG{o}{=} \PYG{n}{Function}\PYG{p}{(}\PYG{n}{V}\PYG{p}{)}
+     \PYG{n}{P\PYGZus{}v}\PYG{p}{,} \PYG{n}{T} \PYG{o}{=} \PYG{n}{split}\PYG{p}{(}\PYG{n}{u}\PYG{p}{)}
+     \PYG{n}{u\PYGZus{}n} \PYG{o}{=} \PYG{n}{Function}\PYG{p}{(}\PYG{n}{V}\PYG{p}{)}
+     \PYG{n}{P\PYGZus{}v\PYGZus{}n}\PYG{p}{,} \PYG{n}{T\PYGZus{}n} \PYG{o}{=} \PYG{n}{split}\PYG{p}{(}\PYG{n}{u\PYGZus{}n}\PYG{p}{)}
+\end{Verbatim}

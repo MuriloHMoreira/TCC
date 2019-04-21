@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+      \PYG{c+c1}{\PYGZsh{} Time discretization}
+      \PYG{n}{t} \PYG{o}{=} \PYG{l+m+mi}{0}
+      \PYG{n}{T\PYGZus{}total} \PYG{o}{=} \PYG{l+m+mi}{25} \PYG{o}{*} \PYG{l+m+mi}{3600}
+      \PYG{n}{dt} \PYG{o}{=} \PYG{l+m+mi}{15}
+
+      \PYG{c+c1}{\PYGZsh{} Space discretization}
+      \PYG{n}{lx} \PYG{o}{=} \PYG{l+m+mf}{0.25}
+      \PYG{n}{ly} \PYG{o}{=} \PYG{l+m+mf}{0.10}
+      \PYG{n}{Nx} \PYG{o}{=} \PYG{l+m+mi}{50}
+      \PYG{n}{Ny} \PYG{o}{=} \PYG{l+m+mi}{20}
+\end{Verbatim}
