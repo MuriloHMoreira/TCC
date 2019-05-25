@@ -193,15 +193,64 @@ Assim, justifica-se o desenvolvimento de um modelo através da metodologia dos e
     em si, definido através das leis fundamentais e equações de estado) em um
     espaço de dimensões finitas (o subespaço onde se encontrará a solução).
 
-    Para ilustrar o conceito a subseção seguinte descreve um exemplo de
-    aproximação de uma função e de uma equação diferencial.
+    Há também uma motivação referente ao fato de que as funções de elemento finito
+    (em especial as funções polinomiais por partes da família P) são apenas
+    funções de classe $C^0$, isto é, suas derivadas não são contínuas. Dessa
+    maneira, a representação de operadores laplacianos ($\nabla^2$) através
+    dessas funções seria problemático. Assim, ao utilizar a identidade de Green
+    (integração por partes em múltiplas dimensões) em um termo laplaciano uma
+    das derivadas é ``transfrida'' para a função teste.
 
-    \subsection{Exemplos ilustrativos de aproximação de funções e equações
-      diferenciais}
+    Para ilustrar tal conceito iremos apresentar um exemplo com a equação de
+    Poisson $\nabla \cdot \left(k \nabla u) \right) = f(x)$, conforme Cummings
+    propõe \cite{cummings2016modeling} (o leitor é referenciado a tal trabalho para
+    maiores detalhes, como a solução em si). Este é um
+    problema de valor sobre um contorno ao se considerar um conjunto de
+    condições de contorno. Para simplificar assumiremos o domínio do problema
+    como sendo unidimensional e que o termo laplaciano é negativo. Também será
+    considerado que o contorno do problema ($\Gamma$) se divide em uma porção
+    cujo valor da derivada da variável $u$ é fixo (condição de Neumann),
+    $\Gamma_N$  e outra porção onde o valor da variável $u$ é fixo (condição de
+    Dirchlet), $\Gamma_D$. Assim,
+    tem-se:
 
-    
+    \begin{equation}
+      \label{eq:poison}
+    -  \frac{d }{d x} \left (k \ \frac{d u}{d x} \right ) = f(x) \text{ in } \Omega
+    \end{equation}
+
+    \begin{equation}
+      \label{eq:poi_n}
+     k \ \frac{d u}{d x} = g_N \text{ on } \Gamma_N
+   \end{equation}
+
+   \begin{equation}
+     \label{eq:poi_d}
+    u = g_D \text{ on } \Gamma_D
+   \end{equation}
+
+   As equações \ref{eq:poison}, \ref{eq:poi_n} e \ref{eq:poi_d} compõe a
+   formulação diferencial, também chamada de forma forte do problema. Para
+   aplicar a metodologia dos elementos finitos é necessário postular o problema
+   em sua forma variacional (também chama de forma fraca). Para tanto a Equação
+   \ref{eq:poison} é multiplicado por uma função teste $\psi$ e integrada ao
+   longo de todo domínio $\Omega \in (0, l)$.
+
+   \begin{equation}
+     \label{eq:poison_weak}
+   - \int_\Omega \frac{d}{d x} \left (k \ \frac{d u}{d x} \right ) \ \psi d\Omega = \int_\Omega f(x) \ \psi d \Omega
+   \end{equation}
+
+   Aplicando a identidade de Green ao termo do lado esquerdo,
    
+   \begin{equation}
+     \label{eq:poison_weak_2}
+    \int_\Omega k \ \frac{d u}{d \Omega} \frac{d \psi}{d \Omega} dx - \left[k \ \psi \ \frac{d u}{d n}\right]_0^l = \int_\Omega f \ \psi \ d \Omega
+  \end{equation}
 
+  Essa formulação é ``enfraquecida'' no sentido de que as condições de
+  continuidade para a aproximação é menor do que a continuidade da solução exata.
+  
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "TCC-Secagem"
