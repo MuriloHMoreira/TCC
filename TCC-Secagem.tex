@@ -31,7 +31,7 @@
 \documentclass[
 	% -- opções da classe memoir --
 	12pt,				% tamanho da fonte
-	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	openrany,			% capítulos não começam em pág ímpar (insere página vazia caso preciso)
 	twoside,			% para impressão em verso e anverso. Oposto a oneside
 	a4paper,			% tamanho do papel. 
 	% -- opções da classe abntex2 --
@@ -45,8 +45,7 @@
 	spanish,			% idioma adicional para hifenização
 	brazil,				% o último idioma é o principal do documento
 	hyphens,
-  oldfontcommands
-	]{abntex2}
+  oldfontcommands]{abntex2}
 
 
 % ---
@@ -72,7 +71,8 @@
 \usepackage{afterpage}
 \usepackage{capt-of}
 \usepackage{subcaption}
-
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 % ---
 
 % ---		
@@ -108,7 +108,6 @@
 \usepackage{esint}
 \usepackage{bm}
 \usepackage{float}
- 
 % This will add the units
 %----------------------------------------------
 \newcommand{\nomunit}[1]{%
@@ -215,7 +214,9 @@
   \aliaspagestyle{cleared}{empty}
   \aliaspagestyle{part}{estilo_pretextual}
 }
-
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize\bfseries} %12pt
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize} 
 % ---
 % Ajusta a marca \textual para que a numeração volte a ser arábica
 % nos elementos textuais
@@ -636,7 +637,6 @@ Rodrigo, Murilo e tantos outros.
 % ---
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
-\cleardoublepage
 % ---
 
 
@@ -652,8 +652,7 @@ Rodrigo, Murilo e tantos outros.
 % Introdução
 % ----------------------------------------------------------
 \chapter{Introdução} \label{introducao}
-
-\include{introducao}
+\input{introducao}
 
 % ----------------------------------------------------------
 % Fundamentação teórica
@@ -663,20 +662,19 @@ Rodrigo, Murilo e tantos outros.
 \input{monoliticos}
 \input{secagem}
 \input{modelos}
-\input{fem}
 
 % ----------------------------------------------------------
 % Materiais e métodos
 % ----------------------------------------------------------
 \chapter{Materiais e métodos} \label{metodologia}
-\include{materiais}
+\input{materiais}
 
 % ----------------------------------------------------------
 % Resultados e discussão
 % ----------------------------------------------------------
 
 \chapter{Resultados e discussão} \label{results}
-\include{resultados}
+\input{resultados}
 
 % ---
 % Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
@@ -688,7 +686,7 @@ Rodrigo, Murilo e tantos outros.
 % Conclusão
 % ---
 \chapter{Considerações finais} \label{conclusao}
-\include{conclusao}
+\input{conclusao}
 
 -
 % ----------------------------------------------------------
@@ -717,10 +715,8 @@ Rodrigo, Murilo e tantos outros.
 % ---
 % Inicia os apêndices
 % ---
-\begin{apendicesenv}
-
-\include{apendices}
-
+\begin{apendicesenv}\label{apend}
+\input{apendices}
 \end{apendicesenv}
 % ---
 
@@ -732,11 +728,9 @@ Rodrigo, Murilo e tantos outros.
 % ---
 % Inicia os anexos
 % ---
-\begin{anexosenv}
-
-\include{anexos}
-
-\end{anexosenv}
+%\begin{anexosenv}
+%\input{anexos}
+%\end{anexosenv}
 
 %---------------------------------------------------------------------
 % INDICE REMISSIVO
