@@ -32,7 +32,7 @@
 	% -- opções da classe memoir --
 	12pt,				% tamanho da fonte
 	openrany,			% capítulos não começam em pág ímpar (insere página vazia caso preciso)
-	twoside,			% para impressão em verso e anverso. Oposto a oneside
+	oneside,			% para impressão em verso e anverso. Oposto a oneside
 	a4paper,			% tamanho do papel. 
 	% -- opções da classe abntex2 --
 	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
@@ -230,10 +230,10 @@
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
-\titulo{Uso de um modelo númerico para a otimização das curvas de secagem de concretos aluminosos}
+\titulo{Uso de um modelo numérico para a otimização das curvas de secagem de concretos aluminosos}
 \autor{Murilo Henrique Moreira}
 \local{São Carlos -- SP}
-\data{2018}
+\data{2019}
 \orientador{Prof. Victor Carlos Pandolfelli}
 \coorientador{Prof. Ana Paula Luz}
 \instituicao{%
@@ -349,7 +349,7 @@
 % ----------------------------------------------------------
 % ELEMENTOS PRÉ-TEXTUAIS
 % ----------------------------------------------------------
-% \pretextual
+\pretextual
 
 % ---
 % Capa
@@ -375,9 +375,9 @@
 % com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
 % o conteúdo de implementação deste arquivo pelo comando abaixo:
 %
-% \begin{fichacatalografica}
-%     \includepdf{fig_ficha_catalografica.pdf}
-% \end{fichacatalografica}
+\begin{fichacatalografica}
+    \includepdf{ficha.pdf}
+\end{fichacatalografica}
 %\begin{fichacatalografica}
 %	\vspace*{\fill}					% Posição vertical
 %	\hrule							% Linha horizontal
@@ -501,29 +501,47 @@
 % ---
 \begin{agradecimentos}
 
-Agradeço primeiramente aos meus pais, Margaret e Luiz, por todo o ensino de
-responsabilidade e disciplina essenciais para alcançar meus objetivos, ao
-carinho e amizade. À minha companheira e melhor amiga Mariana, pelo suporte,
-atenção e ajuda em todos os momentos.
+Agradeço primeiramente aos meus pais, Margaret e Luiz Henrique Moreira, por todo o ensino de
+responsabilidade e disciplina essenciais para alcançar meus objetivos, além do
+carinho e amizade. Agradeço a minha irmã pelo exemplo de profissional dedicada e
+perseverante durante uma belíssima vida acadêmica, com quem sempre pude
+compartilhar os desafios de anos de IC. À minha companheira e melhor amiga
+Mariana, pelo suporte, atenção e ajuda em todos os momentos, me mantendo firme
+na Fé de que o melhor há de acontecer.
 
 Agradeço ao Departamento de Engenharia de Materiais, pela qualidade de ensino e
-inspiração que tanto professores reconhecidos proporcionam.
+inspiração que tanto professores reconhecidos proporcionaram e proporcionam.
 
 Ao Prof. Pandolfelli pela orientação cuidadosa ao longo de 5 anos de graduação, que sempre
 auxiliou e ajudou as melhores tomadas de decisão, sendo um verdadeiro mentor e proporcionando
-crescimento profissional e pessoal, estando sempre disponível para ajudar.
+crescimento profissional e pessoal, estando sempre disponível para ajudar com
+paciência e humildade. Seu comprometimento com a ciência aplicada em tecnologia
+é algo que inspira a mim e tantos outros, além de dever inspirar muitos de
+nossos Professores Universitários deste país.
 
 Agradeço especialmente à minha coorientadora, Prof. Ana Paula, por todos os
 ensinamentos e auxílio na parte experimental sem a qual toda a simulação se
-tornaria irrelevane, além das ideias e grande amizade.
+tornaria irrelevante, além das ideias e da grande amizade.
+
+Também agradeço ao Professor Roberto Frederico Ausas por todo ensinamento e
+auxílio com os métodos numéricos e com as profundas análises do problema, tanto
+do ponto de vista dimensional, quanto do ponto de vista de implementação, e
+também ao Mestre Pedro Ivo Pelissari pela ajuda e auxílio nas fases preliminares
+do projeto.
 
 Agradeço também a todos do Grupo de Engenharia de Microestrutura de Materiais,
 pelo suporte e parceria nas pessoas do técnico Guilherme Morbiolli, ao Mestre
-Matheus Santos e ao Graduando Túlio Mumic e todos os outros colegas que tornaram
-o dia a dia sempre mais amistoso. 
+Matheus Felipe Santos e ao Graduando Túlio Mumi\'c Cunha e todos os outros
+colegas que tornaram o dia a dia sempre mais amistoso.
+
+E finalmente ao Professor Ricardo Afonso Angélico que me introduziu no mundo dos elementos
+finitos com a maior das didáticas, deixando claro que sempre há uma maneira
+lógica, metódica e correta de se trabalhar com simulação computacional,
+inspiro-me em um dia ter tamanha competência em compartilhar tantos assuntos
+complexos de maneira simples.
 
 E aos meus amigos e colegas de curso, com os quais compartilho grandes memórias,
-Rodrigo, Murilo e tantos outros. 
+Rodrigo, Murilo, Denis, Augusto e tantos outros. 
 
 \end{agradecimentos}
 % ---
@@ -553,6 +571,26 @@ Rodrigo, Murilo e tantos outros.
  \vspace{\onelineskip}
     
  \noindent
+ A etapa de secagem de concretos refratários é um dos pontos principais durante
+ a aplicação deste tipo de material. Um aquecimento muito abrupto pode levar o
+ material a trincar ou ainda explodir devido a pressurização do vapor de água
+ que estava previamente adsorvido fisicamente e também ligado quimicamente no
+ material curado.
+ Assim, é comum na indústria o uso de curvas de secagem essencialmente empíricas
+ demasiadamente conservadoras o que leva em um aumento do tempo improdutivo de
+ reparo ou de construção do equipamento, um maior gasto de combustíveis fósseis
+ e uma redução da competitividade financeira do usuário. Assim, o uso de modelos
+ computacionais capazes de simular a secagem prevendo os campos de pressão do
+ vapor de água no interior da microporosidade se faz extremamente útil. Tais
+ modelos já são utilizados nos ramos de concretos para a construção civil, porém
+ seu desenvolvimento resultou em modelos complicados dependentes de inúmeras
+ propriedades e de ensaios complexos. Assim, o presente trabalho buscou
+ a obtenção de um modelo capaz de ser utilizado para a otimização de curvas de
+ secagem. Tal objetivo foi atingido ao se utilizar do ensaio de termogravimetria
+ para a obtenção das curvas de sorção isotérmica. Em seguida, através de um
+ controlador Proporcional Integral Derivativo foi possível otimizar uma curva de
+ secagem fictícia, similar às utilizadas na indústria.  
+ 
  \textbf{Palavras-chaves}: Concretos Refratários, Explosão, Modelo Numérico, FEM, FEniCS.
 \end{resumo}
 
@@ -563,7 +601,26 @@ Rodrigo, Murilo e tantos outros.
 
    \vspace{\onelineskip}
  
-   \noindent 
+   \noindent
+   The drying step of refractory concretes is one of the main points during
+   the application of this type of material. Very abrupt heating may lead the
+material to crack or even explode due to the pressurization of the water vapor
+which was previously physically adsorbed and also chemically bound on the cured material.
+Thus, it is common to use essentially empirical drying curves on the industry, generally
+over conservative, which leads to an increase in the repair time of the
+equipment, an increase on the spending of fossil fuels and a reduction of the
+financial competitiveness of the end user. Therefore, the use of models
+to simulate the drying by predicting the pressure fields of the
+water vapor inside the microporosity becomes extremely useful. Such
+models are already used in the civil construction field, but
+its development resulted in complex models dependent on numerouss
+properties and complex tests. Hence, the present study sought to
+to obtain a model capable of being used for the optimization of the
+drying curve. This objective was accomplished when using the thermogravimetry analysis
+to adjust the isothermal sorption curves. Then, through a
+Proportional Integral Derivative controller it was possible to optimize a
+fiction heat up curve, similar to the ones used in industry.
+
    \textbf{Key-words}: Refractory Castable, Spalling, Numerical Model, FEM, FEniCS.
    
  \end{otherlanguage*}
@@ -614,20 +671,53 @@ Rodrigo, Murilo e tantos outros.
 % inserir lista de abreviaturas e siglas
 % ---
 \begin{siglas}
-  \item[Fig.] Area of the $i^{th}$ component
-  \item[456] Isto é um número
-  \item[123] Isto é outro número
-  \item[lauro cesar] este é o meu nome
+  \item[TGA] Análise Termogravimétrica
+  \item[DTG] Derivada da curva de perda de massa
+  \item[PTM] Ensaio de aquecimento unilateral com medidas de pressão,
+    temperatura e massa
+  \item[OSH] Ensaio equivalente ao PTM
+  \item[FEM] Método dos elementod finitos
+  \item[P1]  Elemento polinomial linear
+  \item[PID] Controlador Proporcional integral derivativo
 \end{siglas}
 
 % ---
 % inserir lista de símbolos
 % ---
 \begin{simbolos}
-  \item[$ \Gamma $] Letra grega Gama
-  \item[$ \Lambda $] Lambda
-  \item[$ \zeta $] Letra grega minúscula zeta
-  \item[$ \in $] Pertence
+  \item[$ t $] Tempo, $s$
+  \item[$ T $] Temperatura, $^{\circ}C$
+  \item[$ P_v $] Pressão devido ao vapor no interior do material, $Pa$
+  \item[$ h $] Coeficiente de transferência de calor, $W \ m^{-2} \
+    ^{\circ}C^{-1}$
+  \item[$ h_m $] Coeficiente de transferência de massa, $s m^{-1}$
+  \item[$ w $] Curvas de Sorção Isotérmicas, $Kg \ m^3$
+  \item[$ C_p $] Calor específico do concreto, $J \ \Kg^{-1} \ K^{-1}$
+  \item[$ \rho $]  Densidade do concreto, $Kg \ m^{-1}$
+  \item[$ \C_w $]  Calor específico da àgua, $J \ \Kg^{-1} \ K^{-1}$
+  \item[$ \C_a $] Calor latente de evaporação da água $J \ Kg^{-1}$
+  \item[$ \lambda $] Condutividade térmica, $W \ m^{-1} \ ^{\circ}C^{-1}$
+  \item[$ \Omega $] Domínio do modelo, $-$ 
+  \item[$ \Gamma_D $] Contorno sujeito a uma condição de contorno de Dirichlet, $-$
+  \item[$ \Gamma_N $] Contorno sujeito a uma condição de contorno de Robin ou
+    Neumann, $-$
+  \item[$ \psi $] Função Teste, $-$
+  \item[$ g $] Aceleração da gravidade, $m \ s^{-2}$
+  \item[$ \mathbf{n} $] Vetor normal à superfície, $-$
+  \item[$ w_0 $]  Massa de água para saturação de concreto a temperatura
+    ambiente, por $Kg$ de concreto, $Kg \ m^{-3}$
+  \item[$ w_c $]  Massa de cimento por $m^3$ de concreto, $Kg \ m^{-3}$
+  \item[$ \Delta T $] Aumento da temperatura na face quente obtida pelo
+    controlador PID, $ ^{\circ}C $ 
+  \item[$ K_p $] Coeficiente do termo proporcional do controlador PID, $-$
+  \item[$ K_i $] Coeficiente do termo integral do controlador PID, $ s^{-1} $
+  \item[$ K_d $] Coeficiente do termo derivativo do controlador PID, $ s $
+  \item[$ e $] Diferença entre a pressão entre a máxima pressão no tempo $ t $ e a
+    pressão de limite, $ Pa $
+  \item[$ \tau $] Variável de integração com respeito ao tempo 
+  \item[$ P_v^{max} $] Pressão máxima no tempo $t$, $ Pa $
+  \item[$ \sigma_f $] Resistência Mecânica à flexão 3 pontos, $MPa$
+    
 \end{simbolos}
 
 %---
@@ -688,7 +778,6 @@ Rodrigo, Murilo e tantos outros.
 \chapter{Considerações finais} \label{conclusao}
 \input{conclusao}
 
--
 % ----------------------------------------------------------
 % ELEMENTOS PÓS-TEXTUAIS
 % ----------------------------------------------------------

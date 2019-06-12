@@ -1,10 +1,51 @@
 \section{Conclusões do projeto}
+O presente trabalho tinha como objetivo o desenvolvimento e a implementação de
+um modelo númerico simples, no sentido de que capturasse os principais fenômenos
+físicos que ocorrem durante a secagem de materiais monolíticos refratários, e
+que fosse capaz de ser validado a partir de ensaios baratos como a TGA. Embora
+o modelo utilizado seja derivado de trabalhos desenvolvidos na década de 70, é
+possível observar que o primeiro objetivo foi contemplado. Porém, a
+maior contribuição do projeto está na proposta de trabalho, que ao invés de
+utilizar do ensaio de TGA como uma ferramenta de validação (o que fora proposto
+como objetivo), passa a observar tal ensaio como uma ferramenta para a obtenção
+das curvas de sorção isotérmica (seja manualmente ou através da solução do
+problema inverso).
 
+Assim, a comparação dos dados experimentais, mostrou que o modelo apresentou uma
+certa coerência qualitativa com os dados experimentais, apresentando o material
+aquecido na condição que gerou explosão, com
+maior pressão e com níveis condizentes com uma estimativa da resistência a
+tração simples do material.
+
+Além destas contribuições, o trabalho mostrou a possibilidade de se otimizar uma
+curva de secagem a partir do uso de um controlador PID. Embora houvesse um {\it
+  overshoot} de 33.3\% da pressão máxima em comparação a pressão limite, tal
+implementação já apresenta um forte apelo comercial e de aplicação, sendo
+possível propor um {\it workflow} para o estudo de otimização de curvas de
+secagem para diferentes sistemas e distintas geometrias. Tal linha de trabalho
+pode ser resumida nas etapas:
+
+\begin{itemize}
+  \item Medidas das propriedades térmicas do material (condutividade térmica e
+    calor específico), densidade, permeabilidade, água de desidratação e
+    propriedades mecânicas do material;
+  \item Calibração das curvas de sorção isotérmica a partir de um ensaio de TGA;
+  \item Validação do modelo através de um ensaio de aquecimento unilateral
+    (ensaio PTM);
+  \item Uso do controlador PID a partir da pressão limite estimada a partir da
+    resistência mecânica do material, em uma simulação da geometria final da
+    peça a ser seca.
+\end{itemize}
+
+Dessa forma, seria possível obter uma solução orientada a cada contexto
+permitindo o uso de curvas de secagem mais arrojadas, com menores impactos
+ambientais, de menor custo associado e principalmente, com menores riscos de
+explosão ou trincamento da peça.
 
 \section{Trabalhos futuros}
 O presente projeto pode ser encarado como uma experiência de sucesso, o objetivo
-geral de se obter um modelo monofásico com baixo número de parâmetros capaz de
-ser validade através do ensaio de TGA foi atingido, bem como os objetivos
+geral de se obter um modelo monofásico com baixo número de parâmetros validado
+com um ensaio de TGA foi parcialmente atingido, bem como os objetivos
 específicos. Por outro lado, a baixa precisão quando comparado aos resultados
 experimentais revelam a existência de novos desenvolvimentos que no contexto do
 atual projeto não foram abordados. São eles:
@@ -22,6 +63,12 @@ atual projeto não foram abordados. São eles:
       comparação com os dados de TGA;
     \item Estudo da presença de aditivos como fibras poliméricas e sua simulaçaõ
       em mesoescala;
-    \item Acoplamento da um sistema controlador PID para a obtenção das curvas
-      de sorção otimizadas para a redução da pressão gerada durante a secagem.
+    \item Implementação do controlador PID otimizado de forma a reduzir o {\it
+        overshoot} da pressão gerada durante a secagem.
 \end{itemize}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "TCC-Secagem"
+%%% End:

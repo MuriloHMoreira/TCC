@@ -1,311 +1,308 @@
 \section{Modelos de Secagem}\label{modelos}
 Existem inúmeros esforços para a simulação do fluxo de fluídos em meios porosos.
 A secgaem de concretos refratários é apenas uma das inúmeras outras aplicações
-que tal simulação compreende, havendo ainda aplicações em tópicos de geofísica
+em que tal fenômeno é observado, havendo ainda aplicações em tópicos de geofísica
 (movimentação de corpos hídricos em subsolo), modelamento de poços de petróleo,
 e ainda simulações do comportamento de estruturas de concreto em situações de
 incêndio (essa a aplicação mais próxima na qual grande desenvolvimento tem sido
-realizado, ver \ref{sec:bazant}
+realizado, ver \ref{sec:bazant}).
 
 
-Os primeiros esforços para tais modelamentos foram realizados por Aleksei Vasielivich Luikov
-\cite{martynenko2010} a partir de 1929. Devido ao uso ainda incipiente de
-métodos numéricos, Luikov elaborou metodologias para a obtenção de soluções
-analíticas para problemas de transporte de massa e energia além de trabalhos que
-propunham experimentos para validação dos modelos, avançando enormenete tal área
-do conhecimento, sendo reconhecido como um dos grandes pesquisadores da área.
+Os primeiros esforços para tais modelamentos foram realizados por Aleksei
+Vasielivich Luikov \cite{martynenko2010} a partir de 1929. Devido ao uso ainda
+incipiente de métodos numéricos, Luikov elaborou metodologias para a obtenção de
+soluções analíticas para os problemas de transporte de massa e energia além de
+trabalhos que propunham experimentos para validação de seus modelos, avançando
+enormenete tal área do conhecimento, sendo reconhecido como um dos grandes
+pesquisadores da área \cite{Mikhailov1983}. Os modelos propostos por Ba\v{z}ant
+e desenvolvido pelos autores mais recentes são derivados da formulação de
+Luikov, documentada em seu Livro de 1964, ``\textit{Heat and Mass Transfer in
+  Capillary Porous Bodies}'' \cite{luikov1964heat}.
 
-Os modelos propostos por Ba\v{z}ant e desenvolvido pelos autores mais recentes são
-derivados da formulação de Luikov, documentada em seu Livro de 1964, ``\textit{Heat and
-Mass Transfer in Capillary Porous Bodies}''
-\cite{luikov1964heat}.
+Conforme descrito por Luikov, o transporte de massa dentro de uma matriz porosa
+pode se dar tanto no estado gasoso quanto no estado líquido. No estado gasos o
+fluxo se dá pelo movimento do vapor e da mistura de gases através da difusão a
+nível molecular e a nível molar através da filtração, isto é, o fluxo decorrente
+da queda de pressão da mistura vapor-gás no interior do material. Já o movimento
+do líquido pode decorrer também por difusão, filtração devido ao gradiente de
+pressão ou ainda por absorção capilar nas camadas adsorvidas.
 
-    Conforme descrito por Luikov, o transporte de massa dentro de uma matriz
-    porosa pode se dar tanto no estado gasoso quanto no estado líquido. No
-    estado gasos o fluxo se dá pelo movimento do vapor e da mistura de gases
-    através da diffusão a nível molecular e a nível molar através da filtração,
-    isto é, o fluxo decorrente da queda de pressão da mistura vapor-gás no
-    interior do material. Já o movimento do líquido pode decorrer também por
-    difusão, filtração devido ao gradiente de pressão ou ainda por absorção
-    capilar.
-
-    Os modelos subsequentes simplificam os fluxos por difusão e focam na
-    descrição do fluxo por filtração através da lei de Darcy. As seções
-    seguintes descrevem os modelos derivados das equações de Luikov.
+Os modelos subsequentes simplificam os fluxos por difusão e focam na descrição
+do fluxo por filtração através da lei de Darcy. As seções seguintes descrevem os
+modelos derivados das equações de Luikov.
     
     
+\subsection{Modelo de Ba\v{z}ant}\label{sec:bazant}
+Zedn\v{e}k Ba\v{z}ant é Professor de Engenharia Cívil e Engenharia de Materiais
+da universidade de Northwestern reconhecido mundialmente pelos seus trabalhos em
+mecânica dos sólidos em estruturas de concreto \cite{bundesen2004biography}. No
+ínicio dos anos 70, Ba\v{z}ant estudou o efeito de altas temperaturas em
+estruturas de concreto (cimento Portland) para aplicações nucleares.
     
-    \subsection{Modelo de Ba\v{z}ant}\label{sec:bazant}
-    Zedn\v{e}k Ba\v{z}ant é Professor de Engenharia Cívil e Engenharia de
-    Materiais da universidade de Northwestern reconhecido mundialmente pelos
-    seus trabalhos em  mecânica dos sólidos em estruturas de concreto. No ínicio
-    dos anos 70, Ba\v{z}ant estudou o efeito de altas temperaturas em estruturas
-    de concreto (cimento Portland) para aplicações nucleares \cite{bundesen2004biography}.
+O modelo de Ba\v{z}ant se destaca por dois grandes motivos, primeiramente foi
+vanguardista ao ser o primeiro (dos trabalhos encontrados durante a revisão
+bibliográfica do presente trabalho) que utilizou de métodos numéricos para
+resolver uma formulação simplificada das equações propostas por Luikov e, pelas
+próprias simplificações utilizadas que permitiram uma abordagem semi-empírica
+direcionada com grande foco para a aplicação em questão. A presente seção usará
+uma notação próxima à utilizada pelo autor, porém alguns termos serão adaptados
+para conferir uma maior clareza e coerência com os modelos aqui utilizados.
+
+A formulação de Ba\v{z}ant se inícia através da definição do fluxo mássico de
+uma única fase que representa a água líquida, o vapor e o ar dentro do sistema,
+obedecendo à da Lei de Darcy e do fluxo de Soret, e do fluxo de energia térmica
+através da lei de Fourier e do fluxo de Dofour \cite{bazant1978thermal,
+  bazant1978, bavzant1982, bazant1979}:
+
+\begin{equation}
+  \label{eq:Darcy}
+  \vec{J}_{Darcy} = - \rho \vec{v} = - \rho \frac{\kappa }{\nu} \nabla P 
+\end{equation}
+
+\begin{equation}
+  \label{eq:Soret}
+  \vec{J}_{Soret} = - D_s \nabla T
+\end{equation}
+
+\begin{equation}
+  \label{eq:Fourier}
+  \vec{q}_{Fourier} = - \lambda \nabla T 
+\end{equation}
+
+\begin{equation}
+  \label{eq:Dufour}
+  \vec{q}_{Dufour} = - D_d \nabla P
+\end{equation}
+
+A simplificação do transporte mássico por uma única fase foi um dos pontos que
+gerou uma certa cisão entre autores que adotaram tal prática, \cite{Gong1995a,
+  Gong1991, Abdel-Rahman1996}, e outros que separaram cada componente,
+\cite{Pesavento2013, Gawin2003, Gawin2004, Gawin1999, Fey2016b, Davie2006a,
+  Davie2012a}, a parcela que mais se desenvolveu nos últimos anos.
+
+Porém, Ba\v{z}ant defende que devido à morfologia dos canais pelos quais tais
+fluidos passam, tal simplificação é coerente dado que o caminho livre médio das
+moléculas de vapor (fase que seria mais móvel, em teoria) é maior que o
+espaçamento entre os poros, e portanto sua movimentação se dá linearmente,
+movendo consigo a camada de moléculas adsorvidas na superfície interna do
+material \cite{bavzant2018creep}.
+
+Uma vez definido tais fluxos as primeiras simplificações são feitas, os fluxos
+de Soret ($\vec{J}_{Soret}$) e de Dufour ($\vec{q}_{Dufour}$) são considerados
+desprezíveis devido resultados de estudos experimentais \cite{bazant1979}. Em
+seguida, é considerada em uma equação de balanço energético e outra de balanço
+mássico gerando um sistema de equações parciais diferenciais.
+
+\begin{equation}
+  \label{eq:baz_MB}
+  \underbrace{\frac{\partial w}{\partial t}}_{\text{(a)}} = \underbrace{\vphantom{ \left(\frac{a}{b}\right) } - \nabla \cdot \vec{J}_{Darcy}}_{\text{(b)}} + \underbrace{\frac{\partial w_d}{\partial t}}_{\text{(c)}}
+\end{equation}
+
+O termo $(a)$ corresponde a taxa de liberação de água livre do sistema em um
+dado ponto, sendo portanto equivalente à quantidade de água transportada para
+(ou de) tal ponto, representado pelo termo (b), e a quantidade de água liberada
+durante a desidratação (ou consumida durante a hidratação), termo (c).
+
+O balanço energético por sua vez se dá através da igualdade da taxa de consumo
+(ou liberação de energia térmica) em dado ponto, termo $(a)$, com a taxa de
+consumo de energia para a liberação da água livre, termo $(b)$, a quantidade de
+calor transportada por convecção, termo $(c)$ e a quantidade de calor
+transportado por condução, termo $(d)$.
+
+\begin{equation}
+  \label{eq:baz_EB}
+  \underbrace{\rho \ C_p \ \frac{\partial T}{\partial t}}_{\text{(a)}} = \underbrace{C_a \ \frac{\partial w}{\partial t}}_{\text{(b)}} + \underbrace{\vphantom{\left(\frac{a}{b}\right)} C_w \vec{J}_{Darcy}\cdot \nabla T}_{\text{(c)}} - \underbrace{\vphantom{\left(\frac{a}{b}\right)} \nabla \cdot \vec{q}_{Fourier}}_{\text{(d)}}
+\end{equation}
     
-    O modelo de Ba\v{z}ant se destaca por dois grandes motivos, primeiramente foi
-    vanguardista ao ser o primeiro (dos trabalhos encontrados durante a revisão
-    bibliográfica do presente trabalho) que utilizou de métodos numéricos para
-    resolver uma formulação simplificada das equações propostas por Luikov e
-    segundo, e o segundo pelas próprias simplificações utilizadas que permitiram
-    uma abordagem semi-empírica direcionada com grande foco para a aplicação em
-    questão. A presente seção usará uma notação próxima à utilizada pelo autor,
-    porém alguns termos serão adaptados para conferir uma maior clareza.
+Os trabalhos de Ba\v{z}ant também trouxeram grandes avanços em se tratando das
+considerações das propriedades dos concretos como transientes. Devido as
+inúmeras transformações na microestrutura do material decorrentes de seu
+aquecimento, quase todas as propriedades se tornam funções da temperatura e da
+umidade relativa (e portanto da pressão). As mudanças mais dramáticas são na
+permeabilidade do material bem como nas curvas de sorção que definem o teor de
+água livre no sistema. Portanto, no modelo descrito na presente seção, tanto a
+densidade, quanto a condutividade térmica, o calor sensível do concreto e da
+água serão considerados constantes, sendo apenas a permeabilidade, as curvas de
+sorção isotérmica e a água liberada por desidratação funções da temperatura e/ou
+umidade relativa (pressão).
 
-    A formulação de Ba\v{z}ant se inícia através da definição do fluxo mássico
-    de uma única fase que representa a água líquida, o vapor e o ar dentro do
-    sistema, obedecendo à da Lei de Darcy e do fluxo de Soret, e do fluxo térmico através da
-    lei de Fourier e do fluxo de Dofour \cite{bazant1978thermal, bazant1978, bavzant1982, bazant1979}:
-    \begin{equation}
-      \label{eq:Darcy}
-      \vec{J}_{Darcy} = - \rho \vec{v} = - \rho \frac{\kappa }{\nu} \nabla P 
-    \end{equation}
+\subsubsection{Curvas de Sorção Isotérmica}
+Através de relações semi-empíricas Ba\v{z}ant descreve as curvas de sorção como
+uma função definida em dois regimes distintos, a região na qual o concreto está
+insaturado de água (umidade relativa menor que 1, $h(P, T) \leq 0.96$) e a
+região super saturada ($h{P,T} \geq 1.04$), além disso define-se uma região de
+intervalo que interpola linearmente tais valores:
 
-    \begin{equation}
-      \label{eq:Soret}
-      \vec{J}_{Soret} = - D_s \nabla T
-    \end{equation}
-
-    \begin{equation}
-      \label{eq:Fourier}
-     \vec{q}_{Fourier} = - \lambda \nabla T 
-    \end{equation}
-
-    \begin{equation}
-      \label{eq:Dufour}
-      \vec{q}_{Dufour} = - D_d \nabla P
-    \end{equation}
-
-    A simplificação de uma única fase foi disparadamente a parcela que mais se
-    desenvolveu através dos trabalhos dos autores
-    subsequentes \cite{Pesavento2013, Gong1995a, Gong1991, Gawin2003, Gawin2004,
-      Gawin1999, Fey2016b, Davie2006a, Davie2012a, Abdel-Rahman1996}, porém,
-    Ba\v{z}ant defend e que devido à morfologia dos canais pelos quais tais fluídos passam, tal simplificação é coerente dado que o caminho livre médio das moléculas de vapor (fase que seria mais móvel, em teoria) é maior que o espaçamento entre os poros, e portanto sua
-    movimentação se dá linearmente, movendo consigo a camada de moléculas
-    adsorvidas na superfície interna do material [REFERENCIA LIVRO].
+\begin{equation}
+  \label{eq:baz_phi}
+  w(P, T) =
+  \begin{cases} 
+    w_c \left( \frac{w_0}{c} \ h(P,T) \right)^{\frac{1}{m(T)}} & h(P, T)\leq 0.96 \\
+    w_{0.96} + (h(P, T) - 0.96) \frac{(w_{1.04} - w_{0.96})}{(1.04-0.96)} & 0.96 < h(P, T) < 1.04 \\
+    (1 + 3 \ \epsilon^v)\frac{n}{v} & 1.04\leq h(P, T)
+  \end{cases}
+\end{equation}
     
-    Uma vez definido tais fluxos as primeiras simplificações são feitas, os
-    fluxos de Soret ($\vec{J}_{Soret}$) e de Dufour ($\vec{q}_{Dufour}$) são considerados
-    desprezíveis devido resultados de estudos experimentais \cite{bazant1979}.
+Onde na região insaturada ($h(P, T) \leq 0.96$) $w_c$ é a quantidade de cimento
+em $kg$ por $m^3$ de concreto, $w_0$ é a quantidade inicial de água em $kg$ por
+$m^3$ de concreto e $\frac{1}{m(T)}$ é uma correlação empírica que envolve a
+dependência da tensão superficial da água com a temperatura, bem como quaisquer
+erros experimentais das medidas e das simplificações realizadas.
 
-    Em seguida, tais fluxos são considerados em uma equação de balanço
-    energético e outra de balanço mássico gerando um sistema de equações
-    parciais diferenciais.
+Segundo Ba\v{z}ant, tal correlação foi obtida a partir de considerações
+termodinâmicas em um modelo simplificado de um concreto com poros de geometria
+constante e quantidade de água adsorvida negligenciável. Tal modelo concluiu que
+a variação da quantidade de água livre nos concretos insaturados segue uma lei
+de potências até o ponto de saturação.
 
-    \begin{equation}
-      \label{eq:baz_MB}
-      \underbrace{\frac{\partial w}{\partial t}}_{\text{(a)}} = \underbrace{\vphantom{ \left(\frac{a}{b}\right) } - \nabla \cdot \vec{J}_{Darcy}}_{\text{(b)}} + \underbrace{\frac{\partial w_d}{\partial t}}_{\text{(c)}}
-    \end{equation}
+Na definição das curvas de sorção, no intervalo de saturação, $w_{0.96}$ e
+$w_{1.04}$ são funções da temperatura dos valores de água livre no sistema em
+umidades relativas, $h(P, T)$, iguais a 0.96 e 1.04, respectivamente. Observe
+que tal correlação garante apenas uma continuidade das derivadas da curva de
+sorção por partes. Tal ponto é abordado por outros autores que desenvolveram
+formas de forçar tanto a continuidade das curvas de sorção bem como de suas
+derivadas \cite{Fey2016b}.
 
-    O termo $(a)$ corresponde a taxa de liberação de água livre do sistema em um
-    dado ponto, sendo portanto equivalente à quantidade de água transportada
-    para (ou de) tal ponto, representado pelo termo (b), e a quantidade de água liberada durante a
-    desidratação (ou consumida durante a hidratação), termo (c).
+Por fim, na região super saturada, $\epsilon$ representa a deformação elástica
+do concreto enquanto $n$ é a porosidade e $v$ é o volume especifíco da água.
+Conforme reportado por Ba\v{z}ant, a quantidade de água poderia ser assumida a
+partir de tabelas com propriedades termodinâmicas da água através do volume dos
+poros do material e da pressão e temperatura em dado momento, porém, os cálculos
+usando tal procedimento resultavam pressões da ordem de 1000 atm, muito maiores
+do que os valores esperados. A explicação para essa divergência vem do fato de
+que o volume dos poros é uma função crescente da temperatura devido dois efeitos
+sobrepostos, sendo a hiidratação do cimento, o que reduz o volume de água nos
+poros e principalmente a redução da quantidade de água adsorvida nas paredes dos
+poros o que aumenta o volume livre do sistema.
 
-    O balanço energético por sua vez se dá através da igualdade da taxa de
-    consumo (ou liberação de energia térmica) em dado ponto, termo $(a)$, com a taxa de
-    consumo de energia para a liberação da água livre, termo $(b)$, a quantidade
-    de calor transportada por convecção, termo $(c)$ e a quantidade de calor
-    transportado por condução, termo $(d)$.
+\subsubsection{Permeabilidade}
+O tratamento dado a permeabilidade por Ba\v{z}ant justifica a sua hipótese de
+que o transporte de água no material se dá por um único fluído que representa o
+vapor de água, o líquido e a água adsorvida. Isto se dá pelo fato de que,
+especialmente em temperaturas inferiores a 100$^{\circ}$, a capilaridade interna
+do material não é totalmente contínua apresentando empescoçamentos que controlam
+a permeabilidade efetiva do material \cite{bazant1978}.
 
-    \begin{equation}
-      \label{eq:baz_EB}
-      \underbrace{\rho \ C_p \ \frac{\partial T}{\partial t}}_{\text{(a)}} = \underbrace{C_a \ \frac{\partial w}{\partial t}}_{\text{(b)}} + \underbrace{\vphantom{\left(\frac{a}{b}\right)} C_w \vec{J}_{Darcy}\cdot \nabla T}_{\text{(c)}} - \underbrace{\vphantom{\left(\frac{a}{b}\right)} \nabla \cdot \vec{q}_{Fourier}}_{\text{(d)}}
-    \end{equation}
+Portanto, em baixas temperaturas (abaixo de 95$^{\circ}$) a energia de ativação
+para a migração de água nas camadas de água adsorvida na região de
+empescoçamento ($f_2(T)$) e o transporte de umidade nessa região controlam
+($f_1(h)$) a permeabilidade do material conforme descrito pela equação
+\ref{eq:baz_perm}.
     
-    Os trabalhos de Ba\v{z}ant também trouxeram grandes avanços em se tratando
-    das propriedades dos concretos. Devido as inúmeras transformações na
-    microestrutura do material decorrentes de seu aquecimento, quase todas as
-    propriedades se tornam funções da temperatura e da umidade relativa (e
-    portanto da pressão). As mudanças mais dramáticas são na permeabilidade do
-    material bem como nas curvas de sorção que definem o teor de água livre no
-    sistema. Portanto, no modelo descrito na presente seção, tanto a densidade,
-    quanto a condutividade térmica, o calor sensível do concreto e da água serão
-    considerados constantes, sendo apenas a permeabilidade, as curvas de sorção
-    isotérmica e a água liberada por desidratação funções da temperatura e/ou
-    umidade relativa (pressão).
+\begin{equation}
+  \label{eq:baz_perm}
+  K(P, T) =
+  \begin{cases} 
+    K_0 f_1(h) f_2(T) & T \leq 95 \\
+    K_0 f_2(95) f_3(T) & T > 95
+  \end{cases}
+\end{equation}
 
-    \subsubsection{Curvas de Sorção Isotérmica}
-    Através de relações semi-empíricas Ba\v{z}ant descreve as curvas de sorção
-    como uma função definida em dois regimes distintos, a região na qual o
-    concreto está insaturado de água (umidade relativa menor que 1, $h(P, T) \leq 0.96$)
-    e a região super saturada ($h{P,T} \geq 1.04$), além disso define-se uma região de
-    intervalo que interpola linearmente tais valores:
-    \begin{equation}
-      \label{eq:baz_phi}
-      w(P, T) =
-      \begin{cases} 
-      w_c \left( \frac{w_0}{c} \ h(P,T) \right)^{\frac{1}{m(T)}} & h(P, T)\leq 0.96 \\
-      w_{0.96} + (h(P, T) - 0.96) \frac{(w_{1.04} - w_{0.96})}{(1.04-0.96)} & 0.96 < h(P, T) < 1.04 \\
-      (1 + 3 \ \epsilon^v)\frac{n}{v} & 1.04\leq h(P, T) 
-      \end{cases}
-    \end{equation}
-    
-    Onde na região insaturada ($h(P, T) \leq 0.96$) $w_c$ é a quantidade de
-    cimento em $kg$ por $m^3$ de concreto, $w_0$ é a quantidade inicial de água em $kg$
-    por $m^3$ de concreto e $\frac{1}{m(T)}$ é uma correlação empírica que
-    envolve a dependência da tensão superficial da água com a temperatura, bem
-    como quaisquer erros experimentais das medidas e das simplificações
-    realizadas.
+Onde,
 
-    Segundo Ba\v{z}ant, tal correlação foi obtida a partir de considerações
-    termodinâmicas em um modelo simplificado de um concreto com poros de geometria
-    constante e quantidade de água adsorvida negligenciável. Tal modelo concluiu
-    que a variação da quantidade de água livre nos concretos insaturados segue
-    uma lei de potências até o ponto de saturação.
+\begin{equation}
+  \label{eq:f1}
+  f_1(h) = \alpha + \frac{1-\alpha}{1+\left(\frac{1-h}{1-h_t}\right)^4} 
+\end{equation}
 
-    Na definição das curvas de sorção, no intervalo de saturação, $w_{0.96}$ e
-    $w_{1.04}$ são funções da temperatura dos valores de água livre no sistema
-    em umidades relativas, $h(P, T)$, iguais a 0.96 e 1.04, respectivamente.
-    Observe que tal correlação garante apenas uma continuidade das derivadas da
-    curva de sorção por partes. Tal ponto é abordado por outros autores que
-    desenvolveram formas de forçar tanto a continuidade das curvas de sorção bem
-    como de suas derivadas.
-
-    Por fim, na região super saturada, $\epsilon$ representa a enquanto $n$ é a
-    porosidade e $v$ é o volume especifíco da água. Conforme reportado por
-    Ba\v{z}ant, a quantidade de água poderia ser assumida a partir de tabelas
-    com propriedades termodinâmicas da água através do volume dos poros do
-    material e da pressão e temperatura em dado momento, porém, os cálculos
-    usando tal procedimento resultavam pressões da ordem de 1000 atm, muito
-    maiores do que os valores esperados. A explicação para essa divergência vem
-    do fato de que o volume dos poros é uma função crescente da temperatura
-    devido dois efeitos sobrepostos, sendo a desidratação do cimento, o que
-    aumenta o volume dos poros e principalmente a redução da quantidade de água
-    adsorvida nas paredes dos poros o que aumenta o volume livre do sistema.
-
-    \subsubsection{Permeabilidade}
-    O tratamento dado a permeabilidade por Ba\v{z}ant justifica a sua hipótese
-    de que o transporte de água no material se dá por um único fluído que
-    representa o vapor de água, o líquido e a água adsorvida. Isto se dá pelo
-    fato de que, especialmente em temperaturas inferiores a 100$^{\circ}$, a
-    capilaridade interna do material não é totalmente contínua apresentando
-    empescoçamentos que controlam a permeabilidade efetiva do material
-    \cite{bazant1978}.
-
-    Portanto, em baixas temperaturas (abaixo de 95$^{\circ}$) a energia de ativação para a migração de
-    água nas camadas de água adsorvida na região de empescoçamento ($f_2(T)$) e o
-    transporte de umidade nessa região controlam ($f_1(h)$) a permeabilidade do material
-    conforme descrito pela equação \ref{eq:baz_perm}.
-    
-    \begin{equation}
-      \label{eq:baz_perm}
-      K(P, T) =
-      \begin{cases} 
-       K_0 f_1(h) f_2(T) & T \leq 95 \\
-       K_0 f_2(95) f_3(T) & T > 95 
-      \end{cases}
-    \end{equation}
-
-    Onde,
-
-    \begin{equation}
-      \label{eq:f1}
-     f_1(h) = \alpha + \frac{1-\alpha}{1+\left(\frac{1-h}{1-h_t}\right)^4} 
-    \end{equation}
-
-    e $\alpha$ representa a largura das regiões de empescoçamento como uma
-    função linear da temperatura (sendo que varia de 0.05 em temperatura
-    ambiente e 1 à 95$^{\circ}$)e $h_t$ é a umidade de transição (equivalente a
-    0.75). Além disso, define-se $f_2(T)$ como uma equação do tipo Arhenius:
-    \begin{equation}
-      \label{eq:f2}
-     f_2(T)  = \exp{\left[\frac{Q}{R}\left( \frac{1}{T_0} - \frac{1}{T} \right) \right]}
-    \end{equation}
-    
-    
-    Em temperaturas superiores a $95^{\circ}$ ainda considera-se o efeito da
-    energia de ativação para a temperatura de $95^{\circ}$ além de se considerar
-    uma função que gere o aumento de duas ordens de grandeza na permeabilidade
-    decorrente da transição do regime regido pela energia de ativação do
-    transporte de água adsorvida na região do pescoço para um
-    controlado pela viscosidade da mistura de água líquida e vapor de água
-    conforme descreve $f_3{T}$:
-    \begin{equation}
-      \label{eq:f3}
-     f_3(T) = \exp{\left( \frac{T-95}{0.881+0.214 \ (T-95)} \right)}
-    \end{equation}
-
-    Onde as constantes numéricas foram determinadas pela interpolação de dados
-    experimentais.
-
-    Considerando as variáveis dependentes da temperatura e pressão, a quantidade
-    de água químicamente ligada liberada vem da interpolação de dados
-    experimentais de ensaios termogravimétricos realizados em amostras pré
-    secadas. Com o sistema de equações parciais diferenciais, e as propriedades
-    dos materiais, define-se uma geometria e condições de contorno, escolhe-se
-    um método numérico tendo assim resultados dos campos de pressão e
-    temperatura em função do tempo. Ba\v{z}ant também trouxe contribuições
-    no desenvolvimento de adequações da metodologia dos elementos
-    finitos o que ampliava a performance dos programas computacionais.
-
-    Nos anos seguintes, diferentes autores desenvolveram e ampliaram as
-    capabilidades do modelo de Ba\v{z}ant tanto nas mesmas aplicações
-    previamente abordadas quanto em outras áreas como a de secagem de concretos
-    refratários.
+e $\alpha$ representa a largura das regiões de empescoçamento como uma função
+linear da temperatura (sendo que varia de 0.05 em temperatura ambiente e 1 à
+95$^{\circ}$)e $h_t$ é a umidade de transição (equivalente a 0.75). Além disso,
+define-se $f_2(T)$ como uma equação do tipo Arhenius:
+\begin{equation}
+  \label{eq:f2}
+  f_2(T)  = \exp{\left[\frac{Q}{R}\left( \frac{1}{T_0} - \frac{1}{T} \right) \right]}
+\end{equation}
     
     
-    \subsection{Modelos derivados de Ba\v{z}ant}\label{sec:deriv_bazant}
-    A presente seção introduz apenas superficialmente os modelos derivados dos
-    trabalhos de Ba\v{z}ant, portanto questões específicas estão fora do escopo
-    desta seção. Para maiores detalhes referencia-se aos trabalhos dos
-    respectivos autores. Tal decisão justifica-se pelo fato de que nesta parte
-    busca-se traçar uma visão geral do desenvolvimento dessa área, além disso
-    aspectos dos modelos utilizados serão mais detalhados na seção Materiais e
-    Métodos.
+Em temperaturas superiores a $95^{\circ}$ ainda considera-se o efeito da energia
+de ativação para a temperatura de $95^{\circ}$ além de se considerar uma função
+que gere o aumento de duas ordens de grandeza na permeabilidade decorrente da
+transição do regime regido pela energia de ativação do transporte de água
+adsorvida na região do pescoço para um controlado pela viscosidade da mistura de
+água líquida e vapor de água, tal transformação decorrente da conversão de fases
+do cimento hidratado, conforme descreve $f_3{T}$:
+\begin{equation}
+  \label{eq:f3}
+  f_3(T) = \exp{\left( \frac{T-95}{0.881+0.214 \ (T-95)} \right)}
+\end{equation}
 
-    \subsubsection{Modelo de Gong}
-    O modelo utilizado no presente trabalho baseia-se no modelo de Gong
-    \cite{Gong1995a} que por sua vez é extremamente similar ao de Ba\v{z}ant
-    distinguindo-se apenas pelas propriedades utilizadas e condições de controno
-    empregadas uma vez que a aplicação do modelo visa a simulação da secagem de
-    concretos refratários. Tal modelo será descrito em maiores detalhes na seção
-    \ref{metodologia}.
+Onde as constantes numéricas foram determinadas pela interpolação de dados
+experimentais.
+
+Considerando as variáveis dependentes da temperatura e pressão, a quantidade de
+água químicamente ligada liberada vem da interpolação de dados experimentais de
+ensaios termogravimétricos realizados em amostras pré-secadas. Com o sistema de
+equações parciais diferenciais, e as propriedades dos materiais, define-se uma
+geometria e condições de contorno, escolhe-se um método numérico e se obtém a
+solução do sistema de equações parciais diferencias, tendo assim resultados dos
+campos de pressão e temperatura em função do tempo. Ba\v{z}ant também trouxe
+contribuições no desenvolvimento de adequações da metodologia dos elementos
+finitos o que ampliava a performance dos programas computacionais \cite{bazant1978}.
+
+Nos anos seguintes, diferentes autores desenvolveram e ampliaram as
+capabilidades do modelo de Ba\v{z}ant tanto nas mesmas aplicações previamente
+abordadas quanto em outras áreas como a de secagem de concretos refratários.
     
     
-    \subsubsection{Modelos de Gawin}
-    O modelo de Gawin\cite{Gawin1999}  foi resultado da intensa interação de distintos grupos de
-    pesquisas Europeus dentro do escopo do projeto Eurocode \cite{Eurocode} que
-    visa a melhoria da segurança de estruturas da construção civíl sujeitas a
-    incêndios.
+\subsection{Modelos derivados de Ba\v{z}ant}\label{sec:deriv_bazant}
+A presente seção introduz apenas superficialmente os modelos derivados dos
+trabalhos de Ba\v{z}ant, portanto questões específicas estão fora do escopo
+desta segmento. Para maiores detalhes referencia-se aos trabalhos dos respectivos
+autores. Tal decisão justifica-se pelo fato de que nesta parte busca-se traçar
+uma visão geral do desenvolvimento dessa área, além disso aspectos dos modelo
+utilizado serão mais detalhados no Apêndice A.
 
-    O modelo de Gawin diferentemente do de Ba\v{z}ant considera o fluxo
-    multifásico dentro do material separando o balanço da massa em balanço de
-    ar, vapor de água e água líquida. Além disso, propriedades como
-    condutividade térmica, densidade e calor específico são considerados como
-    funções da tempratura e/ou da pressão.
-
-    Por fim, além dos aspectos termohídricos engloba-se o efeito termomecânico
-    resultando no modelo termohigromecânico que prevê os estados de tensão bem
-    como o desenvolvimento de danos no material sujeito à altas temperaturas.
-
-    Como um contraponto, tal modelo se torna altamente complexo com baixo apelo
-    tecnológico para a simulação de sistemas distintos uma vez que para um único
-    material mais de 50 parâmetros precisam ser medidos e/ou estimados.
+\subsubsection{Modelo de Gong}
+O modelo utilizado no presente trabalho baseia-se no modelo de Gong
+\cite{Gong1995a} que por sua vez é extremamente similar ao de Ba\v{z}ant
+distinguindo-se apenas pelas propriedades utilizadas e condições de controno
+empregadas uma vez que a aplicação do modelo visa a simulação da secagem de
+concretos refratários.
     
-    \subsubsection{Modelos de Davie}
-    O modelo de Davie é similar ao de Gawin se diferenciando pelo fato de que
-    utiliza um modelamento termomecânico mais simplista além de simplificar o
-    modelo ao descartar a influência do transporte de energia por convecção no
-    material.
     
-    \subsubsection{Modelo de Ben\v{e}s}
-    Ben\v{e}s et al desenvolveram análises numéricas trazendo desenvolvimentos
-    do ponto de vista matemático como a confirmação de que tal problema
-    matemático de fato apresenta uma solução única e real \cite{Benes2013a}.
-    Entretanto o modelo em questão é mais simplista similar ao do Gong com a
-    única diferença de que engloba a contribuição do calor de desidratação
-    necessário para liberar a água fisicamente ligada às fases do cimento.
-    
-    \subsubsection{Modelo de Fey}
-    Por fim o modelo de Fey \cite{Fey2016b} é o mais recente trabalho referente à secagem de
-    materiais refratários. É um modelo intermediário ao de Gawin e do Ba\v{z}ant
-    no sentido de que é multifásico porém não considera os efeitos
-    termomecânicos. Sua maior contribuição é portanto em relação às análises e
-    metodologias propostas em como otimizar a curva de secagem baseado nos
-    resultados da simulação.
+\subsubsection{Modelos de Gawin}
+O modelo de Gawin\cite{Gawin1999} foi resultado da intensa interação de
+distintos grupos de pesquisas Europeus dentro do escopo do projeto Eurocode
+\cite{Eurocode} que visa a melhoria da segurança de estruturas da construção
+civíl sujeitas a incêndios.
 
-    A Tabela \ref{tab:comp_models} resume a comparação dos modelos derivados do
-    modelo de Ba\v{z}ant.
+O modelo de Gawin diferentemente do de Ba\v{z}ant considera o fluxo multifásico
+dentro do material separando o balanço da massa em balanço de ar, vapor de água
+e água líquida. Além disso, propriedades como condutividade térmica, densidade e
+calor específico são considerados como funções da tempratura e/ou da pressão.
+
+Por fim, além dos aspectos termohídricos engloba-se o efeito termomecânico
+resultando no modelo termohigromecânico que prevê os estados de tensão bem como
+o desenvolvimento de danos no material sujeito à altas temperaturas.
+
+Como um contraponto, tal modelo se torna altamente complexo com baixo apelo
+tecnológico para a simulação de sistemas distintos uma vez que para um único
+material mais de 20 parâmetros precisam ser medidos e/ou estimados.
+    
+\subsubsection{Modelos de Davie}
+O modelo de Davie é similar ao de Gawin se diferenciando pelo fato de que
+utiliza um modelamento termomecânico mais simplista além de simplificar o modelo
+ao descartar a influência do transporte de energia por convecção no material.
+    
+\subsubsection{Modelo de Ben\v{e}s}
+Ben\v{e}s et al desenvolveram análises numéricas trazendo desenvolvimentos do
+ponto de vista matemático como a confirmação de que tal problema matemático de
+fato apresenta uma solução única e real \cite{Benes2013a}. Entretanto o modelo
+em questão é mais simplista similar ao do Gong com a única diferença de que
+engloba a contribuição do calor de desidratação necessário para liberar a água
+fisicamente ligada às fases do cimento.
+    
+\subsubsection{Modelo de Fey}
+Por fim o modelo de Fey \cite{Fey2016b} é o mais recente trabalho referente à
+secagem de materiais refratários. É um modelo intermediário ao de Gawin e do
+Ba\v{z}ant no sentido de que é multifásico porém não considera os efeitos
+termomecânicos. Sua maior contribuição é portanto em relação às análises e
+metodologias propostas em como otimizar a curva de secagem baseado nos
+resultados da simulação.
+
+A Tabela \ref{tab:comp_models} resume a comparação dos modelos derivados do
+modelo de Ba\v{z}ant.
 
 
     
