@@ -1,7 +1,8 @@
 \section{Propriedades}\label{sec:props}
 As propriedades do material necessários para a simulação são a condutividade
-tsl érmica, o calor específico, a densidade, a permeabilidade e a água quimicamente
-ligada, conforme apresentadas na Figura \ref{fig:properties}.
+térmica, o calor específico, a densidade, a permeabilidade e a água quimicamente
+ligada contina na microestrutura do concreto, conforme apresentadas na Figura
+\ref{fig:properties}.
 
  \begin{figure}[ht]
 \centering
@@ -24,7 +25,7 @@ calor específico foi calculado a partir da medida de difusividade térmica,
 $\alpha = \frac{\lambda}{\rho \ C_p}$, e portanto não é apresentado o desvio
 associado. Por fim, a permeabilidade do material apresenta um desvio padrão
 muito elevado, e isto reflete no baixo valor de $r^2$ (aqui uma possível solução
-seria aumntar o grau do polinômio, porém, seria o equivalente a realizar um {\it
+seria aumentar o grau do polinômio, porém, seria o equivalente a realizar um {\it
   overfitting} uma vez que estaríamos inserindo no modelo um comportamento que
 pode ser apenas o produto do erro da medida \cite{raschka2017}). 
 
@@ -37,7 +38,7 @@ pode ser apenas o produto do erro da medida \cite{raschka2017}).
 Na Figura \ref{fig:prop_wd} a curva de liberação de água químicamente ligada é
 apresentada. Sua medição é realizada a partir do ensaio de TGA realizado em
 amostras previamente secas à 110$^\degree$C por 24 horas. Tal abordagem deve ser
-considerada cuidadosamnte uma vez que sua precisão precisa ser investigada mais
+considerada cuidadosamente, uma vez que sua precisão precisa ser investigada mais
 a fundo. Uma possível problemática envolvida nessa maneira de medir a água de
 desidratação é a formação de fases específicas durante a secagem a
 110$^\degree$C, que não estariam presentes em uma secagem do material apenas
@@ -110,7 +111,8 @@ para tal transformação sofre uma mudança muito pequena, conforme evidenciado 
 Figura \ref{fig:prop_wd}).
 
 Por fim, o ensaio realizado a 20$^\degree$C/min, explodiu antes de ocorrer o
-início da desidratação (i.e. Figura \ref{fig:prop_wd}), e portanto, é possível
+início da desidratação das fases C$_3$AH$_6$ e da gibsita
+\cite{da2015refractory} (i.e. Figura \ref{fig:prop_wd}), e portanto, é possível
 concluir que sua explosão foi decorrente apenas da ebulição da água adsorvida.
 Embora a presente conclusão concorde com os princípios de interpretação de
 ensaios térmicos dinâmicos \cite{gabbott2008}, é importante salientar que a
@@ -123,7 +125,7 @@ material, mudando seu comportamento de desidratação.
 
 \section{\textit{Benchmark} do modelo}
 O modelo para a simulação da TGA foi feito através de uma malha tridimensional
-com 33000 elementos formando uma amostra cilíndrica de dimensões iguais ao do
+com 33000 elementos, formando uma amostra cilíndrica de dimensões iguais ao do
 corpo de prova utilizado no ensaio experimental (raio de 2,5 cm e altura de 5
 cm). A fim de simular o aquecimento da amostra, toda a sua superfície lateral é
 aquecida por radiação enquanto todas as faces são permeáveis, o incremento de
@@ -172,7 +174,7 @@ experimental é menor que a simulada.
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=12cm]{./figures/First_TGA.pdf}
+	\includegraphics[width=14cm]{./figures/All_TGA_results.pdf}
 	\caption{Evolução temporal da temperatura superficial, (a), da pressão máxima
     (b) e campo escalar de pressões ao final do ensaio da amostra simulada e
     aquecida à 5$^\degree$C/min, (c)).
@@ -212,11 +214,11 @@ experimentais, é possível observar que o ajuste manual da curva de sorção n�
 representou o comportamento demonstrado nas medidas experimentais, especialmente
 da perda de massa em função da temperatura onde se pode ver que na simulação, a
 água liberada em baixas temperaturas é muito maior do que a da medida
-experimenetal (especialmente para o caso da amostra aquecida à 20$^\degree$C/min). 
+experimental (especialmente para o caso da amostra aquecida à 20$^\degree$C/min). 
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm]{./figures/TGA_results_mass.pdf}
+	\includegraphics[width=14cm]{./figures/TGA_results_mass.pdf}
 	\caption{Resultados de massa liberada em função da temperatura interna, (a),
     (b) e (c), e do tempo de simulação (d), (e) e (f).
   \label{fig:TGA_Mass}}
@@ -233,18 +235,17 @@ condições de contorno são de aquecimento na face esquerda conforme a curva de
 secagem, enquanto a face direita é resfriada por convecção natural em um
 ambiente à 25$^\degree$C. A amostra é permeável em ambos os lados.
 
-A Figura \ref{fig:No_PID} apresenta a curva de secagem (a), bem como a evolução da
-pressão máxima na amostra (b). É possível observar que a pressão máxima alcança
-um valor máximo de 9 bar (0.9 MPa, aqui a unidade escolhida foi bar a fim de
-facilitar as comparações com o resultados reportados por Gong) atingida durante
-o patamar. Tal resultado demonstra que o patamar está mal dimensionado, uma vez
-que embora a temperautra na face quente esteja fixada, a propagação da onda de
-calor no interior do material levou a pressurização elevada, potencialmente
-levando o material a falhas.
+A Figura \ref{fig:No_PID} apresenta a curva de secagem (a), bem como a evolução
+da pressão máxima na amostra (b). É possível observar que a pressão máxima
+alcança um valor máximo de aproximadamente 10 bar (1.0 MPa, aqui a unidade
+escolhida foi bar a fim de facilitar as comparações com o resultados reportados
+por Gong) atingida durante o patamar. Tal resultado demonstra que o patamar está
+mal dimensionado, uma vez que embora a pressão não cresça no intervalo de 2 a 4
+horas, a água não é totalmente retirada, o que leva ao pico no tempo 6h.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm]{./figures/No_PID.pdf}
+	\includegraphics[width=14cm]{./figures/No_PID.pdf}
 	\caption{Curva de aquecimento (a) e pressão máxima obtida (b) para o caso de referência.
   \label{fig:No_PID}}
 \end{figure}
@@ -259,13 +260,6 @@ necessário adicionar no algoritmo que o máxima taxa de aquecimento fosse de
 150$^\degree$C/h (a mesma taxa máxima utilizada no caso anterior, de referência
 sem o uso do controlador).
 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=12cm]{./figures/PID.pdf}
-	\caption{Resultados de massa liberada em função da temperatura interna, (a),
-    (b).
-  \label{fig:PID}}
-\end{figure}
 
 A Figura \ref{fig:PID} (a) apresenta a curva otimizada para a secagem. É
 possível observar a existência de um patamar de duas horas na temperatura de
@@ -281,6 +275,14 @@ controlador e o seu efeito na resposta. Fey et al, no trabalho referenciado
 resolveu tal problemática ao fazer uso de um segundo loop de controle,
 adicionando um termo de erro proporcional à posição da pressão máxima, de forma
 que fosse compensada e antecipada a ocorrência de {\it overshootings}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=14cm]{./figures/PID.pdf}
+	\caption{Resultados de massa liberada em função da temperatura interna, (a),
+    (b).
+  \label{fig:PID}}
+\end{figure}
 
 No presente trabalho, tal estrutura complexa de algoritmo não foi contemplada
 devido a limitações no tempo de desenvolvimento, e devido a possibilidade de se

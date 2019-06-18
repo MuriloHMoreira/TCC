@@ -120,7 +120,7 @@
 % Pacotes de citações
 % ---
 \usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
-\usepackage[alf,abnt-etal-text=it]{abntex2cite}	% Citações padrão ABNT
+\usepackage[alf,abnt-etal-text=it,bibjustif]{abntex2cite}	% Citações padrão ABNT
 
 % --- 
 % CONFIGURAÇÕES DE PACOTES
@@ -572,54 +572,55 @@ Rodrigo, Murilo, Denis, Augusto e tantos outros.
     
  \noindent
  A etapa de secagem de concretos refratários é um dos pontos principais durante
- a aplicação deste tipo de material. Um aquecimento muito abrupto pode levar o
- material a trincar ou ainda explodir devido a pressurização do vapor de água
- que estava previamente adsorvido fisicamente e também ligado quimicamente no
- material curado.
- Assim, é comum na indústria o uso de curvas de secagem essencialmente empíricas
- demasiadamente conservadoras o que leva em um aumento do tempo improdutivo de
- reparo ou de construção do equipamento, um maior gasto de combustíveis fósseis
- e uma redução da competitividade financeira do usuário. Assim, o uso de modelos
- computacionais capazes de simular a secagem prevendo os campos de pressão do
- vapor de água no interior da microporosidade se faz extremamente útil. Tais
- modelos já são utilizados nos ramos de concretos para a construção civil, porém
- seu desenvolvimento resultou em modelos complicados dependentes de inúmeras
- propriedades e de ensaios complexos. Assim, o presente trabalho buscou
- a obtenção de um modelo capaz de ser utilizado para a otimização de curvas de
- secagem. Tal objetivo foi atingido ao se utilizar do ensaio de termogravimetria
- para a obtenção das curvas de sorção isotérmica. Em seguida, através de um
- controlador Proporcional Integral Derivativo foi possível otimizar uma curva de
- secagem fictícia, similar às utilizadas na indústria.  
+ a aplicação deste tipo de material. Um aquecimento muito rápido pode levar o
+ material a trincar ou ainda explodir, devido a pressurização do vapor de água
+ que estava previamente adsorvido fisicamente e também ligado quimicamente nas
+ fases presentes na miscroestrutura. Assim, é comum nas indústrias o uso de
+ curvas de secagem essencialmente empíricas, demasiadamente conservadoras, o que
+ leva em um aumento do tempo improdutivo de reparo ou de construção do
+ equipamento, um maior gasto de combustíveis fósseis e uma redução da
+ competitividade financeira do usuário. Assim, o uso de modelos computacionais
+ capazes de simular a secagem de revestimentos cerâmicos densos prevendo os
+ campos de pressão do vapor de água no interior da microporosidade, se faz
+ extremamente útil. Tais modelos já são utilizados na avaliação de concretos
+ para a construção civil, porém seu desenvolvimento resultou em modelos
+ complicados e dependentes de inúmeras propriedades e de ensaios complexos.
+ Assim, o presente trabalho buscou a obtenção de um modelo capaz de ser
+ utilizado para a otimização de curvas de secagem de concretos aluminosos
+ ligados com cimento de aluminado de cálcio. Tal objetivo foi atingido ao se
+ utilizar de informações coletadas nos ensaios de termogravimetria para a
+ obtenção das curvas de sorção isotérmica. Em seguida, através de um controlador
+ Proporcional Integral Derivativo foi possível otimizar uma curva de secagem
+ similar às utilizadas na indústria, reduzindo as pressões no interior do
+ material no mesmo intervalo de tempo.
  
  \textbf{Palavras-chaves}: Concretos Refratários, Explosão, Modelo Numérico, FEM, FEniCS.
 \end{resumo}
 
 % resumo em inglês
 \begin{resumo}[Abstract]
- \begin{otherlanguage*}{english}
- 
+\begin{otherlanguage*}{english}
+\vspace{\onelineskip}
 
-   \vspace{\onelineskip}
- 
-   \noindent
-   The drying step of refractory concretes is one of the main points during
-   the application of this type of material. Very abrupt heating may lead the
-material to crack or even explode due to the pressurization of the water vapor
-which was previously physically adsorbed and also chemically bound on the cured material.
-Thus, it is common to use essentially empirical drying curves on the industry, generally
-over conservative, which leads to an increase in the repair time of the
-equipment, an increase on the spending of fossil fuels and a reduction of the
-financial competitiveness of the end user. Therefore, the use of models
-to simulate the drying by predicting the pressure fields of the
-water vapor inside the microporosity becomes extremely useful. Such
-models are already used in the civil construction field, but
-its development resulted in complex models dependent on numerouss
-properties and complex tests. Hence, the present study sought to
-to obtain a model capable of being used for the optimization of the
-drying curve. This objective was accomplished when using the thermogravimetry analysis
-to adjust the isothermal sorption curves. Then, through a
-Proportional Integral Derivative controller it was possible to optimize a
-fiction heat up curve, similar to the ones used in industry.
+\noindent
+The drying step of refractory concretes is one of the main points during the
+application of this type of material. A very fast heating may lead the material
+to crack or even explode due to the pressurization of the water vapor which was
+previously physically adsorbed and also chemically bound on the present phases
+of the cured material. Thus, it is common to use essentially empirical drying
+curves on the industry, generally over conservative, which leads to an increase
+in the repair time of the equipment, an increase on the spending of fossil fuels
+and a reduction of the financial competitiveness of the end user. Therefore, the
+use of models to simulate the drying by predicting the pressure fields of the
+water vapor inside the microporosity becomes extremely useful. Such models are
+already used in the civil construction field, but its development resulted in
+complex models dependent on numerouss properties and complex tests. Hence, the
+present study sought to obtain a model capable of being used for the
+optimization of the drying curve. This objective was accomplished when using the
+thermogravimetry analysis to adjust the isothermal sorption curves. Then,
+through a Proportional Integral Derivative controller it was possible to
+optimize a fiction heat up curve similar to the ones used in industry and to
+reduce the pressure inside the material using the same time.
 
    \textbf{Key-words}: Refractory Castable, Spalling, Numerical Model, FEM, FEniCS.
    

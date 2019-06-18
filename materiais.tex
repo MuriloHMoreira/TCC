@@ -1,24 +1,26 @@
 O presente trabalho busca propor um modelo numérico capaz de prever os perfis de
 temperatura e pressão no interior de uma amostra de concreto refratário sujeito
-ao aquecimento e através deste, otimizar uma curva de secagem. Para tanto é
+ao aquecimento e por meio deste, otimizar uma curva de secagem. Para tanto é
 fundamental o uso de experimentos para a obtenção das propriedades necessárias
-ao modelo bem como ensaios que permitam a validação do mesmo. Assim, a presente
+ao modelo, bem como ensaios que permitam a validação do mesmo. Assim, a presente
 seção apresenta o levantamento das características necessárias ao modelamento
-bem como os testes para validação do modelo. Além disso no Apência há uma seção
-específica (Seção \ref{codigo}) que descreve o modelo matemático bem como a sua
-implementação em Python usando o pacote FEniCS. É porém de fundamental
-importância determinar uma composição que será utilizada e modelada, e portanto
-é a seção que inicia o presente capítulo. Ao final do capítulo o algoritmo de
-controle da temperatura, capaz de otimizar a curva de secagem, é apresentado.
+bem como os testes para validação do modelo. Além disso, no apêncie há uma seção
+específica (Apêndice \ref{codigo}) que descreve o modelo matemático bem como a
+sua implementação em Python usando o pacote FEniCS. É porém de fundamental
+importância determinar a composição que será utilizada e modelada, e portanto a
+primeira seçaõ do presente capítulo abordará tal assunto. Ao final do capítulo o
+algoritmo de controle da temperatura, capaz de otimizar a curva de secagem, será
+apresentado.
 
 \section{Composição de Concreto Refratário Aluminoso}
-A composição utilizada é de um concreto autoescoante e pode ser encontrada na
-Tabela \ref{tab:composition}. Sua obtenção foi baseada no modelo de
-empacotamento de Andreasen com coeficiente de empacotamento (q) igual a 0,21.
+A composição utilizada neste projeto é de um concreto autoescoante e pode ser
+encontrada na Tabela \ref{tab:composition}. Sua obtenção foi baseada no modelo
+de empacotamento de Andreasen com coeficiente de empacotamento (q) igual a 0,21
+\cite{da2015refractory}.
 
 \begin{table}[]
 \centering
-\caption{}
+\caption{Composição do cimento utilizado no trabalho}
 \label{tab:composition}
 \begin{tabular}{|l|l|l|}
   \hline
@@ -33,6 +35,7 @@ empacotamento de Andreasen com coeficiente de empacotamento (q) igual a 0,21.
                                                                 & CT3000SG   & 10                  \\ \hline
   Cimento de Aluminato de Cálcio                       & Secar 71   & 5                   \\ \hline
   Água destilada                                &            & 4.5                 \\ \hline
+  Dispersante                &   Castement FS60, Basf         & 0.2                \\ \hline
 \end{tabular}
 \end{table}
 
@@ -59,19 +62,19 @@ As propriedades fundamentais para o modelo são:
 \end{itemize}
 
 Além disso, as curvas de sorção isotérmica também se fazem necessária, porém,
-devido a ampla dificuldade em mensurá-la, o presente trabalho adotará a curva
+devido a ampla dificuldade em mensurá-las, o presente trabalho adotará a curva
 padrão para concretos refratários reportada por Gong et al\cite{Gong1995a} e a
-ajustará em caso de necessidade. Além de tais propriedades ensaios de Porosidade
-Aparente ($n_a$), e de Resistência Mecânica também foram realizados para avaliar
-a suas relações com as propriedades obtidas.
+ajustará a mesma em caso de necessidade. Além de tais propriedades, ensaios de
+Porosidade Aparente ($n_a$) e de Resistência Mecânica também foram realizados
+para avaliar as suas relações com as propriedades obtidas.
 
 \subsection{Porosidade e Densidade Aparente}\label{mat:porosidade}
 A porosidade e a densidade aparente dos materiais foram obtidas através do
 método de imersão usando o princípio de Arquimedes em corpos de prova tratados
-previamente a temperaturas de 30$^\circ$C, 110$^\circ$C, 150$^\circ$C e
+previamente a temperaturas de 30$^\circ$C, 110$^\circ$C, 150$^\circ$C,
 200$^\circ$C, 250$^\circ$C e 350$^\circ$C. Devido a possibilidade de hidratação
 do cimento, o fluído de imersão utilizado foi querosene (conforme recomendado
-pela norma ASTM C 830) e os valores de porosidade aparente, $n_a$ e de densidade
+pela norma ASTM C 830) e os valores de porosidade aparente, $n_a$, e de densidade
 aparente, $\rho$, foram calculados conforme as Equações \ref{eq:PA} e
 \ref{eq:DA}, respectivamente.
 
@@ -85,9 +88,9 @@ aparente, $\rho$, foram calculados conforme as Equações \ref{eq:PA} e
   \rho = \frac{P_s}{P_s - P_i} \ \rho_f
 \end{equation}
 
-Onde $P_u$ é o peso a úmido, $P_s$ é o peso da amostra submerso no fluído, $P_s$
+Onde $P_u$ é o peso a úmido, $P_i$ é o peso da amostra submerso no fluído, $P_s$
 é o peso da amostra a seco e $\rho_f$ é a densidade do fluído (no caso a
-densidade da querosene, $rho_f = 820$ Kg/m$^3$). Cada valor foi obtido através
+densidade da querosene, $\rho_f$ = 820 Kg/m$^3$). Cada valor foi obtido através
 da média de 5 amostras distintas.
     
 \subsection{Permeabilidade}\label{mat:perm}
@@ -96,17 +99,18 @@ A permeabilidade dos materiais é uma medida da quantidade relativa dos poros
 abertos intercomunicantes no interior de uma amostra. Para tanto, uma forma de
 medi-la é através da velocidade de um fluído dado uma determinada queda de
 pressão entre as faces de uma amostra. No presente modelo se faz necessário
-obter a permeabilidade em diferentes temperaturas e portanto assume-se que a
-microestrutura do material pode ser aproximada pelo seu estado após um
+obter a permeabilidade em diferentes temperaturas e, portanto, assume-se que
+este valor pode ser aproximado pela sua medição após um
 tratamento térmico em determinada temperatura, sendo a medida feita em
 temperatura ambiente, seguindo a Norma ASTM C577.
 
-As medidas são obtidas pela média de 3 amostras de formato cilíndrico com raio
-de 35mm e espessura de 25mm. Para a vedação do sistema se utiliza silicone além
-de um O-ring de borracha. O esquema é apresentado na Figura \ref{fig:perm}. O
-modelo utiliza a condutividade hidráulica que é obtida a partir da constante de
-permeabilidade Darciana ($k_1$) que representa as perdas de energia viscosa a
-baixas velocidades do ar. A medida porém também permite a medição do parâmetro
+As medidas são obtidas pela média dos resultados obtidos para 3 amostras de
+formato cilíndrico com raio de 35mm e espessura de 25mm. Para a vedação do
+sistema se utiliza silicone além de um O-ring de borracha. O esquema é
+apresentado na Figura \ref{fig:perm}. O modelo utiliza a permeabilidade
+hidráulica que é obtida a partir da constante de permeabilidade Darciana
+($k_1$), que representa as perdas de energia viscosa a baixas velocidades do ar.
+A medida de permeabilidade realizada também permite a obtenção do parâmetro
 $k_2$ devido a não linearidade da velocidade, caracterizada pela equação de
 Forchheimer, \ref{eq:forch}. Este segundo parâmetro diz respeito a perda de
 energia cinética a altas velocidades.
@@ -145,20 +149,20 @@ módulo de ruptura ($\sigma_f$) foi calculado pela Equação \ref{eq:modulo_rup}
 \end{equation}
 
 Onde $P$, é a carga de ruptura medida em N, L é a distância entre os apoios,
-fixa em 127 mm; b é a largura e d , a altura do corpo de prova, sendo todas as
-distâncias medidas em mm.
+fixa em 127 mm; b é a largura e d, a altura do corpo de prova em mm.
     
 \subsection{Termogravimetria (TGA)}\label{mat:TGA}
-    
-Um dos principais ensaios para a simulação do processo de explosão durante o
-processo de secagem em escala laboratorial é o ensaio de termogravimetria. O
-sistema consiste em um forno com uma balança acoplada onde se mede a temperatura
-da amostra e do forno além da evolução do peso de uma amostra cilíndrica com 40
-mm de diâmetro e 40 mm de altura. Os corpos são aquecidos após cura a
-30$^\circ$C por 24 horas. Foram utilizadas taxas de aquecimento constantes de
-2$^\circ$C.min$^{-1}$, 5$^\circ$C.min$^{-1}$ e 20$^\circ$C.min$^{-1}$ no
-intervalo de 30$^\circ$C e 800$^\circ$C. A perda de massa e sua taxa temporal
-foram obtidas através das Equações \ref{eq:TGA_W} e \ref{eq:TGA_DTG}.
+
+Ensaios termogravimétricos são as principais ferramentas usadas para a simulação
+do processo de explosão de corpos cerâmicos em escala laboratoriala. O sistema
+utilizado neste projeto consiste em um forno com uma balança acoplada, onde se
+mede a temperatura da amostra e do forno, além da evolução do peso de uma
+amostra cilíndrica com 50 mm de diâmetro e 50 mm de altura. Os corpos são
+aquecidos após cura a 30$^\circ$C por 24 horas. Foram utilizadas taxas de
+aquecimento constantes de 2$^\circ$C.min$^{-1}$, 5$^\circ$C.min$^{-1}$ e
+20$^\circ$C.min$^{-1}$ no intervalo de 30$^\circ$C e 800$^\circ$C. A perda de
+massa e sua taxa foram obtidas através das Equações \ref{eq:TGA_W} e
+\ref{eq:TGA_DTG}.
 
 \begin{equation}
   \label{eq:TGA_W}
@@ -192,9 +196,9 @@ os outros. Entalhes de 0.4mm são realizados nos tijolos usando uma retífica
 modelo Ferdimat T42 a fim de acomodar os fios do termopar.
 
 A técnica obtém o valor de condutividade através de uma estimativa baseada no
-tempo em que o calor gerado pelo fio quente (FQ) devido ao efeito Joule leva
+tempo em que o calor gerado pelo fio quente (FQ), devido ao efeito Joule, leva
 para ser percebido no termopar da amostra ($T_a$) em uma condição de equilíbrio
-térmico entra o conjunto de tijolos e o forno (através da medida de um termopar
+térmico entre o conjunto de tijolos e o forno (através da medida de um termopar
 de referência $T_r$). Tal ensaio permite a obtenção do calor específico através
 da medida de difusividade térmica do material. A Figura \ref{fig:fio_quente}
 apresenta o {\it layout} do ensaio.
@@ -211,12 +215,13 @@ A estratégia para obtenção de curvas de secagem otimizadas assemelha-se à
 abordagem adotada por Fey et al \cite{Fey2017c}, na qual um controlador PID é
 utilizado para controlar a temperatura a partir da pressão nos poros do
 material. Assim, a abordagem em si não é baseada em um algoritmo de otimização,
-no sentido no qual não se buscará um ótimo local ou global, mas sim buscará
-ter-se o controle da pressão, evitando que seus níveis alcancem a resistência
-mecânica do material, o que levaria a trincas ou explosões. O algoritmo funciona
-a partir do cálculo de um erro $e$ entre a pressão máxima no interior dos poros
-do material, $P_v^{max}$ , e a pressão máxima permitida $P_{max}$. Tal erro
-dependerá do tempo e será recalculado em cada passo de tempo, conforme a Equação
+no sentido no qual não se buscará encontrar os parâmetros que definem uma curva
+de secagem de um ótimo local ou global, mas sim buscará ter-se o controle da
+pressão, evitando que seus níveis alcancem a resistência mecânica do material, o
+que levaria a trincas ou explosões. O algoritmo funciona a partir do cálculo de
+um erro $e$ entre a pressão máxima no interior dos poros do material,
+$P_v^{max}$ , e a pressão máxima permitida $P_{max}$. Tal erro dependerá do
+tempo e será recalculado em cada passo de tempo, conforme a Equação
 \ref{eq:erro_pid}.
 
 \begin{equation}
@@ -237,8 +242,8 @@ Uma das mais difíceis etapas para o uso de controladores PID é a definição d
 constantes dos termos proporcional, integral e derivativo \cite{ogata2002}. No
 presente trabalho, o refinamento de tais coeficientes foi realizado manualmente,
 sendo $K_p = - 2.00 \ 10^{-6}$, $K_i= -6.25 \ 10^{-8}$ e $K_d = 0.00$, ou seja,
-o termo derivativo utilizado é nulo, pois do contrário, as oscilações eram muito
-elevadas.
+o termo derivativo utilizado é nulo, pois do contrário, as oscilações observadas
+na variável de resposta eram muito elevadas.
  
   
 %%% Local Variables:

@@ -23,7 +23,8 @@ o processo de secagem \cite{da2015refractory}:
 
 \begin{enumerate}
 \item Otimização da curva de secagem: \\ Para que a maior quantidade de água
-  seja removida durante o regime de evaporação e não durante o regime de ebulição;
+  seja removida durante o regime de evaporação (25$^{\circ}$C a 100$^{\circ}$C)
+  e não durante o regime de ebulição (100$^{\circ}$C a 300$^{\circ}$C);
 \item Alteração da microestrutura do material: \\ Para aumentar a permeabilidade e
   diminuir o nível de pressurização no interior do material;
 \item Aumento da resistência mecânica: \\ Para que o material resista às tensões
@@ -36,34 +37,43 @@ computacionais poderiam complementar os estudos nesta área.
 
 \subsection{Curvas de secagem}
 Uma forma bastante comum no meio industrial para se definir uma curva de secagem
-é apresentado na Figura \ref{fig:industrial_HUC}.
+é apresentado na Tabela \ref{tab:industrial_HUC}.
 
-\begin{figure}[ht]
+\begin{table}[ht]
 \centering
-\includegraphics[width=\linewidth]{./figures/industrial_HUC.pdf}
-\caption{Procedimento de secagem recomendado pela empresa AGC ceramics. Retirado
-  de \cite{agc2016}. \label{fig:industrial_HUC}}
-\end{figure}
+\caption{Procedimento de secagem recomendado pela empresa AGC Ceramics.
+  Adaptado de \cite{agc2016}.}
+\label{tab:industrial_HUC}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+\hline
+Produto & Concretos com baixo teor de cimento para a indústria de alumínio & Concretos com baixo teor de cimento para outras indústrias & Concretos convencionais \\ \hline
+Da temperatura ambiente até 200°C & 50°C/h & 50°C/h & 50°C/h \\ \hline
+Patamar em 200°C & 1h/10mm de espessura & 1h/20mm de espessura & 1h/20mm de espessura \\ \hline
+De 200°C até 350°C & 25°C/h & 25°C/h & 50°C/h \\ \hline
+Patamar em 350°C & 1h/10mm de espessura & 1h/20mm de espessura & 1h/20mm de espessura \\ \hline
+De 350°C até a temperatura de trabalho & 25°C/h & 50°C/h & 50°C/h \\ \hline
+\end{tabularx}
+\end{table}
 
-Observa-se que as taxas são definidas em diferentes intervalos de temperatura
-baseados aproximadamente nas temperautras de decomposição dos hidratos presentes
-no material. Além disso, o período de tempo em cada etapa é definido a partir da
-espessura do revestimento como uma maneira de se levar em consideração o efeito
-da distribuição de temperatura no interior do material.
+Observa-se que as taxas de aquecimento são definidas em diferentes intervalos de
+temperatura baseados aproximadamente na decomposição dos hidratos presentes no
+material. Além disso, o período de tempo dispendido em cada etapa é definido a
+partir da espessura do revestimento, como uma maneira de se levar em
+consideração o efeito da distribuição de temperatura no interior do material.
 
 A crítica que se faz de tal procedimento é que tal correlação linear entre a
-temperatura e a espessura do componente não traduz os resultados experimentais e
-numéricos. Ademais, há a influência do próprio transporte de massa no
-interior do material nos perfis de temperatura o que pode gerar perfis
+temperatura e a espessura do componente não condiz os resultados experimentais e
+numéricos. Ademais, há a influência do próprio transporte de massa no interior
+do revestimento cerâmico nos perfis de temperatura, o que pode gerar perfis
 completamente distintos.
 
 Tais orientações deveriam ser complementadas por resultados experimentais e
-simulações numéricas levando em conta não só as dimensões do refratário como
+simulações numéricas, levando em conta não só as dimensões do refratário como
 também as condições de contorno, a geometria, a condutividade térmica e a
 permabilidade do material.
 
-Do ponto de vista empírico, ensaios de análise termogravimétrica podem ter
-grande importância para verificar se os intervalos de transofrmações propostos
+Do ponto de vista empírico, ensaios de análise termogravimétrica podem ser de
+grande importância para verificar se os intervalos de transformações propostos
 na curva de secagem, de fato correspondem com as reações de desidratação.
 
 \subsection{Aditivos para secagem}
@@ -72,7 +82,7 @@ mecânica) podem ser implementadas através de aditivos adicionados na composiç
 dos concretos. Dois casos específicos serão apresentados, são eles o uso de
 fibras poliméricas e fibras metálicas. Porém é importante salientar que inúmeras
 outras possibilidades também podem contribuir para o aumento de permeabilidade
-ou o aumento da resistência mecânica do material (como uso de diferentes
+ou o aumento da resistência mecânica dos refratários (como uso de diferentes
 sistemas ligantes, ou fases estabilizadas).
 
 As fibras metálicas são capazes de ampliar a energia de fratura do concreto ao
@@ -86,15 +96,15 @@ metálicas, pode promover um aumento local da permeabilidade do material conform
 reportado por Li et al \cite{li2019}.
 
 Por outro lado, as fibras poliméricas não apresentam quaisquer efeitos de
-tenacificação, inclusive promovendo defeitos de maiores dimensões o que pode
-diminuir a resistência mecânica do material uma vez que tais polímeros são
-decompostos intencionalmente à baixas temperaturas (200$^\circ$C a 300$^\circ$C)
-para promover o aumento da permeabiliade do material.
+tenacificação, inclusive promovendo a formação de defeitos que podem diminuir a
+resistência mecânica do material, uma vez que estas sofrem decomposição em
+baixas temperaturas (200$^\circ$C a 300$^\circ$C) e promovem o aumento da
+permeabilidade do material.
 
 Novamente, o uso da simulação computacional se faz importante uma vez que é
 necessário identificar a temperatura na qual a pressão no interior do material é
-máxima para selecionar o {\it grade} correto de polímero que apresente uma
-temperatura de composição coerente.
+máxima para selecionar o {\it grade} correto de polímero (como as fibras de
+polipropileno) que apresente uma temperatura de decomposição coerente.
 
 Dessa forma justifica-se a busca por modelos númericos que possam garantir a
 otimização das curvas de secagem seja como um complemento às metodologias já
@@ -102,8 +112,9 @@ sugeridas (como otimização da taxa de aquecimento, aumento da permebailidade o
 aumento da resistência mecânica) ou ainda através de novas estratégias
 descobertas através da possibilidade de se obter os campos de pressão e
 temperatura no interior do material durante o fenômeno de secagem. Portanto, a
-próxima seção traz uma breve revisão dos modelos existentes do transporte de
-massa e de energia de materiais porosos sujeitos à altas temperaturas.
+próxima seção traz uma breve revisão dos modelos existentes que descrevem o
+transporte de massa e de energia de materiais sujeitos à altas
+temperaturas.
      
         
 %%% Local Variables:

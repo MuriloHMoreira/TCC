@@ -1,12 +1,13 @@
 \chapter{Código em Python} \label{codigo}
-     O presente trabalho baseia-se no modelo de Ba\v{z}ant
-     \ref{sec:bazant}, assim a presente seção tem como objetivo apresentar a implementação
-     do problema matemático através da plataforma FEniCS. Para tanto, é definida um caso a ser
-     simulado, escolhe-se a geometria e as condições de contorno para melhor
-     representar o problema físico. Em seguida é derivado o sistema de equações
-     parciais diferenciais em sua forma forte, este é então convertido em sua forma
-     fraca a qual é alimentada ao FEniCS e então realiza-se os calculos. Finalmente o script é
-     apresentado e a rotina de pós processamento definida.
+
+O presente trabalho baseia-se no modelo de Ba\v{z}ant \ref{sec:bazant}, assim
+este apêndice tem como objetivo apresentar a implementação do problema
+matemático através da plataforma FEniCS. Para tanto, é definida um caso a ser
+simulado, escolhe-se a geometria e as condições de contorno para melhor
+representar o problema físico. Em seguida é derivado o sistema de equações
+parciais diferenciais em sua forma forte, este é então convertido em sua forma
+fraca a qual é alimentada ao FEniCS e então realiza-se os calculos. Finalmente o
+script é apresentado e a rotina de pós processamento definida.
 
     \section{Caso Ilustrativo}\label{mat:caso}
     O caso a ser simulado é uma seção transversal em 2 dimensões de uma parede
@@ -260,8 +261,7 @@ Quantidade de água inicial por Kg de concreto, $w_0$         & $ 100 Kg m^{-3} 
     \item Loop temporal de resolução das equações e armazenamento dos resultados 
     \end{itemize}
 
-    Cada uma das etapas serão detalhadas e o código mostrado. O arquivo com
-    todos os comandos é apresentado no Apêndice [REF].
+    Cada uma das etapas serão detalhadas e o código mostrado.
 
     
     \subsection{Importação das bibliotecas}
@@ -410,8 +410,7 @@ Quantidade de água inicial por Kg de concreto, $w_0$         & $ 100 Kg m^{-3} 
     \subsection{Definição das propriedades do material}
     Cada uma das propriedades são definidas através de funções definidas em
     python. A única especificidade referente ao uso da plataforma FEniCS é o uso
-    de uma função própria para definir condicionais. O leitor é referenciado ao
-    Anexo [REF] para visualizar o código inteiro a fim de evitar prolixidade. 
+    de uma função própria para definir condicionais. 
 
     \subsection{Especificação das condições iniciais}
     As condições iniciais são projetadas no espaço de elementos finitos usando a

@@ -1,11 +1,11 @@
 \section{Modelos de Secagem}\label{modelos}
-Existem inúmeros esforços para a simulação do fluxo de fluídos em meios porosos.
-A secgaem de concretos refratários é apenas uma das inúmeras outras aplicações
-em que tal fenômeno é observado, havendo ainda aplicações em tópicos de geofísica
-(movimentação de corpos hídricos em subsolo), modelamento de poços de petróleo,
-e ainda simulações do comportamento de estruturas de concreto em situações de
-incêndio (essa a aplicação mais próxima na qual grande desenvolvimento tem sido
-realizado, ver \ref{sec:bazant}).
+Inúmeros esforços estão sendo reportados na literatura para a simulação do fluxo
+de fluídos em meios porosos, sendo que a secagem de concretos refratários é apenas uma das
+inúmeras aplicações em que tal fenômeno é observado, havendo ainda
+aplicações em tópicos de geofísica (movimentação de corpos hídricos em subsolo),
+modelamento de poços de petróleo, e ainda simulações do comportamento de
+estruturas de concreto em situações de incêndio (essa a aplicação mais próxima
+na qual grande desenvolvimento tem sido realizado, ver \ref{sec:bazant}).
 
 
 Os primeiros esforços para tais modelamentos foram realizados por Aleksei
@@ -13,16 +13,17 @@ Vasielivich Luikov \cite{martynenko2010} a partir de 1929. Devido ao uso ainda
 incipiente de métodos numéricos, Luikov elaborou metodologias para a obtenção de
 soluções analíticas para os problemas de transporte de massa e energia além de
 trabalhos que propunham experimentos para validação de seus modelos, avançando
-enormenete tal área do conhecimento, sendo reconhecido como um dos grandes
-pesquisadores da área \cite{Mikhailov1983}. Os modelos propostos por Ba\v{z}ant
-e desenvolvido pelos autores mais recentes são derivados da formulação de
-Luikov, documentada em seu Livro de 1964, ``\textit{Heat and Mass Transfer in
-  Capillary Porous Bodies}'' \cite{luikov1964heat}.
+enormemente tal área do conhecimento \cite{Mikhailov1983}. Os modelos propostos
+por Ba\v{z}ant e desenvolvido por outros autores nos últimos anos são derivados da
+formulação de Luikov, documentada em seu Livro de 1964, ``\textit{Heat and Mass
+  Transfer in Capillary Porous Bodies}'' \cite{luikov1964heat}.
 
 Conforme descrito por Luikov, o transporte de massa dentro de uma matriz porosa
+(como concretos, onde apesar de serem classificados como materiais densos
+apresentam uma microporosidade conectada em sua microestrutura)
 pode se dar tanto no estado gasoso quanto no estado líquido. No estado gasos o
 fluxo se dá pelo movimento do vapor e da mistura de gases através da difusão a
-nível molecular e a nível molar através da filtração, isto é, o fluxo decorrente
+nível molecular e molar através da filtração, isto é, o fluxo decorrente
 da queda de pressão da mistura vapor-gás no interior do material. Já o movimento
 do líquido pode decorrer também por difusão, filtração devido ao gradiente de
 pressão ou ainda por absorção capilar nas camadas adsorvidas.
@@ -37,13 +38,13 @@ Zedn\v{e}k Ba\v{z}ant é Professor de Engenharia Cívil e Engenharia de Materiai
 da universidade de Northwestern reconhecido mundialmente pelos seus trabalhos em
 mecânica dos sólidos em estruturas de concreto \cite{bundesen2004biography}. No
 ínicio dos anos 70, Ba\v{z}ant estudou o efeito de altas temperaturas em
-estruturas de concreto (cimento Portland) para aplicações nucleares.
+estruturas de concreto (contendo cimento Portland) para aplicações nucleares.
     
 O modelo de Ba\v{z}ant se destaca por dois grandes motivos, primeiramente foi
 vanguardista ao ser o primeiro (dos trabalhos encontrados durante a revisão
 bibliográfica do presente trabalho) que utilizou de métodos numéricos para
 resolver uma formulação simplificada das equações propostas por Luikov e, pelas
-próprias simplificações utilizadas que permitiram uma abordagem semi-empírica
+próprias simplificações utilizadas, que permitiram uma abordagem semi-empírica
 direcionada com grande foco para a aplicação em questão. A presente seção usará
 uma notação próxima à utilizada pelo autor, porém alguns termos serão adaptados
 para conferir uma maior clareza e coerência com os modelos aqui utilizados.
@@ -78,7 +79,7 @@ A simplificação do transporte mássico por uma única fase foi um dos pontos q
 gerou uma certa cisão entre autores que adotaram tal prática, \cite{Gong1995a,
   Gong1991, Abdel-Rahman1996}, e outros que separaram cada componente,
 \cite{Pesavento2013, Gawin2003, Gawin2004, Gawin1999, Fey2016b, Davie2006a,
-  Davie2012a}, a parcela que mais se desenvolveu nos últimos anos.
+  Davie2012a}, sendo este a parcela que mais se desenvolveu nos últimos anos.
 
 Porém, Ba\v{z}ant defende que devido à morfologia dos canais pelos quais tais
 fluidos passam, tal simplificação é coerente dado que o caminho livre médio das
@@ -89,8 +90,8 @@ material \cite{bavzant2018creep}.
 
 Uma vez definido tais fluxos as primeiras simplificações são feitas, os fluxos
 de Soret ($\vec{J}_{Soret}$) e de Dufour ($\vec{q}_{Dufour}$) são considerados
-desprezíveis devido resultados de estudos experimentais \cite{bazant1979}. Em
-seguida, é considerada em uma equação de balanço energético e outra de balanço
+desprezíveis devido resultados experimentais \cite{bazant1979}. Em
+seguida, é considerada em uma equação de balanço energético, e outra de balanço
 mássico gerando um sistema de equações parciais diferenciais.
 
 \begin{equation}
@@ -98,16 +99,17 @@ mássico gerando um sistema de equações parciais diferenciais.
   \underbrace{\frac{\partial w}{\partial t}}_{\text{(a)}} = \underbrace{\vphantom{ \left(\frac{a}{b}\right) } - \nabla \cdot \vec{J}_{Darcy}}_{\text{(b)}} + \underbrace{\frac{\partial w_d}{\partial t}}_{\text{(c)}}
 \end{equation}
 
-O termo $(a)$ corresponde a taxa de liberação de água livre do sistema em um
-dado ponto, sendo portanto equivalente à quantidade de água transportada para
-(ou de) tal ponto, representado pelo termo (b), e a quantidade de água liberada
-durante a desidratação (ou consumida durante a hidratação), termo (c).
+O termo $(a)$ da Equação \ref{eq:baz_MB} corresponde a taxa de liberação de água
+livre do sistema em um dado ponto, sendo portanto equivalente à quantidade de
+água transportada para (ou de) tal ponto, representado pelo termo (b), e a
+quantidade de água liberada durante a desidratação (ou consumida durante a
+hidratação), termo (c).
 
 O balanço energético por sua vez se dá através da igualdade da taxa de consumo
-(ou liberação de energia térmica) em dado ponto, termo $(a)$, com a taxa de
-consumo de energia para a liberação da água livre, termo $(b)$, a quantidade de
-calor transportada por convecção, termo $(c)$ e a quantidade de calor
-transportado por condução, termo $(d)$.
+(ou liberação de energia térmica) em dado ponto, Equação \ref{eq:baz_EB}, termo
+$(a)$, com a taxa de consumo de energia para a liberação da água livre, termo
+$(b)$, a quantidade de calor transportada por convecção, termo $(c)$ e a
+quantidade de calor transportado por condução, termo $(d)$.
 
 \begin{equation}
   \label{eq:baz_EB}
@@ -171,9 +173,9 @@ poros do material e da pressão e temperatura em dado momento, porém, os cálcu
 usando tal procedimento resultavam pressões da ordem de 1000 atm, muito maiores
 do que os valores esperados. A explicação para essa divergência vem do fato de
 que o volume dos poros é uma função crescente da temperatura devido dois efeitos
-sobrepostos, sendo a hiidratação do cimento, o que reduz o volume de água nos
-poros e principalmente a redução da quantidade de água adsorvida nas paredes dos
-poros o que aumenta o volume livre do sistema.
+sobrepostos, sendo a hidratação do cimento, o que reduz o volume de água nos
+poros e principalmente a quantidade de água adsorvida nas paredes dos
+poros, o que aumenta o volume livre do sistema.
 
 \subsubsection{Permeabilidade}
 O tratamento dado a permeabilidade por Ba\v{z}ant justifica a sua hipótese de
@@ -216,11 +218,12 @@ define-se $f_2(T)$ como uma equação do tipo Arhenius:
     
     
 Em temperaturas superiores a $95^{\circ}$ ainda considera-se o efeito da energia
-de ativação para a temperatura de $95^{\circ}$ além de se considerar uma função
-que gere o aumento de duas ordens de grandeza na permeabilidade decorrente da
+de ativação para a temperatura de $95^{\circ}$ (termo $f_2(T)$ ainda é
+multiplicado na Equação \ref{eq:baz_perm}), além de se considerar uma função
+que cause o aumento de duas ordens de grandeza na permeabilidade decorrente da
 transição do regime regido pela energia de ativação do transporte de água
 adsorvida na região do pescoço para um controlado pela viscosidade da mistura de
-água líquida e vapor de água, tal transformação decorrente da conversão de fases
+água líquida e vapor de água. Tal transformação decorrente da conversão de fases
 do cimento hidratado, conforme descreve $f_3{T}$:
 \begin{equation}
   \label{eq:f3}
@@ -231,7 +234,7 @@ Onde as constantes numéricas foram determinadas pela interpolação de dados
 experimentais.
 
 Considerando as variáveis dependentes da temperatura e pressão, a quantidade de
-água químicamente ligada liberada vem da interpolação de dados experimentais de
+água quimicamente ligada liberada vem da interpolação de dados experimentais de
 ensaios termogravimétricos realizados em amostras pré-secadas. Com o sistema de
 equações parciais diferenciais, e as propriedades dos materiais, define-se uma
 geometria e condições de contorno, escolhe-se um método numérico e se obtém a
@@ -241,7 +244,7 @@ contribuições no desenvolvimento de adequações da metodologia dos elementos
 finitos o que ampliava a performance dos programas computacionais \cite{bazant1978}.
 
 Nos anos seguintes, diferentes autores desenvolveram e ampliaram as
-capabilidades do modelo de Ba\v{z}ant tanto nas mesmas aplicações previamente
+capabilidades do modelo de Ba\v{z}an, tanto nas mesmas aplicações previamente
 abordadas quanto em outras áreas como a de secagem de concretos refratários.
     
     
@@ -250,58 +253,60 @@ A presente seção introduz apenas superficialmente os modelos derivados dos
 trabalhos de Ba\v{z}ant, portanto questões específicas estão fora do escopo
 desta segmento. Para maiores detalhes referencia-se aos trabalhos dos respectivos
 autores. Tal decisão justifica-se pelo fato de que nesta parte busca-se traçar
-uma visão geral do desenvolvimento dessa área, além disso aspectos dos modelo
+uma visão geral do desenvolvimento dessa área, além disso aspectos do modelo
 utilizado serão mais detalhados no Apêndice A.
 
 \subsubsection{Modelo de Gong}
 O modelo utilizado no presente trabalho baseia-se no modelo de Gong
-\cite{Gong1995a} que por sua vez é extremamente similar ao de Ba\v{z}ant
-distinguindo-se apenas pelas propriedades utilizadas e condições de controno
-empregadas uma vez que a aplicação do modelo visa a simulação da secagem de
+\cite{Gong1995a} qu, por sua vez, é extremamente similar ao de Ba\v{z}ant,
+distinguindo-se apenas pelas propriedades e condições de controno
+empregadas, pois este modelo visa a simulação da secagem de
 concretos refratários.
     
     
 \subsubsection{Modelos de Gawin}
 O modelo de Gawin\cite{Gawin1999} foi resultado da intensa interação de
 distintos grupos de pesquisas Europeus dentro do escopo do projeto Eurocode
-\cite{Eurocode} que visa a melhoria da segurança de estruturas da construção
+\cite{Eurocode}, que visa a melhoria da segurança de estruturas da construção
 civíl sujeitas a incêndios.
 
 O modelo de Gawin diferentemente do de Ba\v{z}ant considera o fluxo multifásico
-dentro do material separando o balanço da massa em balanço de ar, vapor de água
+dentro do material, separando o balanço da massa em balanço de ar, vapor de água
 e água líquida. Além disso, propriedades como condutividade térmica, densidade e
-calor específico são considerados como funções da tempratura e/ou da pressão.
+calor específico são considerados como funções da temperatura e/ou da pressão.
 
-Por fim, além dos aspectos termohídricos engloba-se o efeito termomecânico
-resultando no modelo termohigromecânico que prevê os estados de tensão bem como
-o desenvolvimento de danos no material sujeito à altas temperaturas.
+Por fim, além dos aspectos termohídricos tal abordagem engloba o efeito
+termomecânico do sistema resultando no modelo termohigromecânico que prevê os
+estados de tensão bem como o desenvolvimento de danos no material sujeito à
+altas temperaturas.
 
 Como um contraponto, tal modelo se torna altamente complexo com baixo apelo
-tecnológico para a simulação de sistemas distintos uma vez que para um único
+tecnológico para a simulação de sistemas distintos, uma vez que para um único
 material mais de 20 parâmetros precisam ser medidos e/ou estimados.
     
 \subsubsection{Modelos de Davie}
 O modelo de Davie é similar ao de Gawin se diferenciando pelo fato de que
-utiliza um modelamento termomecânico mais simplista além de simplificar o modelo
-ao descartar a influência do transporte de energia por convecção no material.
+utiliza um modelamento termomecânico mais simplista, além de simplificar as
+equações propostas ao descartar a influência do transporte de energia por
+convecção no material.
     
 \subsubsection{Modelo de Ben\v{e}s}
 Ben\v{e}s et al desenvolveram análises numéricas trazendo desenvolvimentos do
 ponto de vista matemático como a confirmação de que tal problema matemático de
-fato apresenta uma solução única e real \cite{Benes2013a}. Entretanto o modelo
-em questão é mais simplista similar ao do Gong com a única diferença de que
+fato apresenta uma solução única e real \cite{Benes2013a}. Entretanto, o modelo
+em questão é mais simplista, sendo similar ao do Gong com a única diferença de que
 engloba a contribuição do calor de desidratação necessário para liberar a água
 fisicamente ligada às fases do cimento.
     
 \subsubsection{Modelo de Fey}
-Por fim o modelo de Fey \cite{Fey2016b} é o mais recente trabalho referente à
-secagem de materiais refratários. É um modelo intermediário ao de Gawin e do
-Ba\v{z}ant no sentido de que é multifásico porém não considera os efeitos
-termomecânicos. Sua maior contribuição é portanto em relação às análises e
-metodologias propostas em como otimizar a curva de secagem baseado nos
-resultados da simulação.
+Por fim, o modelo de Fey \cite{Fey2016b} é o mais recente trabalho referente à
+secagem de materiais refratários apresentado na literatura. É um modelo
+intermediário ao de Gawin e do Ba\v{z}ant, no sentido de que é multifásico porém
+não considera os efeitos termomecânicos. Sua maior contribuição é portanto em
+relação às análises e metodologias propostas em como otimizar a curva de secagem
+baseado nos resultados da simulação.
 
-A Tabela \ref{tab:comp_models} resume a comparação dos modelos derivados do
+A Tabela 3 resume a comparação dos modelos derivados do
 modelo de Ba\v{z}ant.
 
 
@@ -309,6 +314,7 @@ modelo de Ba\v{z}ant.
     \afterpage{%
     \clearpage% Flush earlier floats (otherwise order might not be correct)
     \begin{landscape}% Landscape page
+        \captionof{table}{Comparação dos modelos derivados de Ba\v{z}ant.}% Add 'table' caption
     \hskip-4.0cm
 \begin{tabular}{lllllll}
       \label{tab:comp_models}
@@ -334,7 +340,6 @@ Mecânico & Degradação da rigídez induzida pela temperatura          & N    &
          & Tensões térmicas transientes                             & N    & N     & N        & S         & S        
 \end{tabular}
  
-        \captionof{table}{Comparação dos modelos derivados de Ba\v{z}ant.}% Add 'table' caption
     \end{landscape}
     \clearpage% Flush page
     }
