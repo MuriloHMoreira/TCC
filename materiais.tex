@@ -4,11 +4,11 @@ ao aquecimento e por meio deste, otimizar uma curva de secagem. Para tanto é
 fundamental o uso de experimentos para a obtenção das propriedades necessárias
 ao modelo, bem como ensaios que permitam a validação do mesmo. Assim, a presente
 seção apresenta o levantamento das características necessárias ao modelamento
-bem como os testes para validação do modelo. Além disso, no apêncie há uma seção
+bem como os testes para validação do modelo. Além disso, no apêndice há uma seção
 específica (Apêndice \ref{codigo}) que descreve o modelo matemático bem como a
 sua implementação em Python usando o pacote FEniCS. É porém de fundamental
 importância determinar a composição que será utilizada e modelada, e portanto a
-primeira seçaõ do presente capítulo abordará tal assunto. Ao final do capítulo o
+primeira seção do presente capítulo abordará tal assunto. Ao final do capítulo o
 algoritmo de controle da temperatura, capaz de otimizar a curva de secagem, será
 apresentado.
 
@@ -25,15 +25,15 @@ de empacotamento de Andreasen com coeficiente de empacotamento (q) igual a 0,21
 \begin{tabular}{|l|l|l|}
   \hline
   \multicolumn{2}{|l|}{Matérias Primas}                         & Composições (wt.\%) \\ \hline
-  \multirow{6}{*}{Alumina Tabular}               & AT 6-3     & 18                  \\ \cline{2-3} 
-                                                                & AT 3-1     & 10                  \\ \cline{2-3} 
-                                                                & AT 1-0.5   & 11                  \\ \cline{2-3} 
-                                                                & AT 0.6-0.2 & 9                   \\ \cline{2-3} 
-                                                                & AT 0.2-0   & 16                  \\ \cline{2-3} 
-                                                                & AT<45      & 10                  \\ \hline
-  \multirow{2}{*}{Alumina Calcinada e Alumina Reativa} & CL370      & 11                  \\ \cline{2-3} 
-                                                                & CT3000SG   & 10                  \\ \hline
-  Cimento de Aluminato de Cálcio                       & Secar 71   & 5                   \\ \hline
+  \multirow{6}{*}{Alumina Tabular}               & AT 6-3, Almatis      & 18                  \\ \cline{2-3} 
+                                                                & AT 3-1, Almatis      & 10                  \\ \cline{2-3} 
+                                                                & AT 1-0.5, Almatis    & 11                  \\ \cline{2-3} 
+                                                                & AT 0.6-0.2, Almatis  & 9                   \\ \cline{2-3} 
+                                                                & AT 0.2-0, Almatis    & 16                  \\ \cline{2-3} 
+                                                                & AT<45, Almatis       & 10                  \\ \hline
+  \multirow{2}{*}{Alumina Calcinada e Alumina Reativa} & CL370, Almatis      & 11                  \\ \cline{2-3} 
+                                                                & CT3000SG, Almatis   & 10                  \\ \hline
+  Cimento de Aluminato de Cálcio                       & Secar 71, Imerys   & 5                   \\ \hline
   Água destilada                                &            & 4.5                 \\ \hline
   Dispersante                &   Castement FS60, Basf         & 0.2                \\ \hline
 \end{tabular}
@@ -87,8 +87,7 @@ aparente, $\rho$, foram calculados conforme as Equações \ref{eq:PA} e
   \label{eq:DA}
   \rho = \frac{P_s}{P_s - P_i} \ \rho_f
 \end{equation}
-
-Onde $P_u$ é o peso a úmido, $P_i$ é o peso da amostra submerso no fluído, $P_s$
+onde $P_u$ é o peso a úmido, $P_i$ é o peso da amostra submerso no fluído, $P_s$
 é o peso da amostra a seco e $\rho_f$ é a densidade do fluído (no caso a
 densidade da querosene, $\rho_f$ = 820 Kg/m$^3$). Cada valor foi obtido através
 da média de 5 amostras distintas.
@@ -119,8 +118,7 @@ energia cinética a altas velocidades.
   \label{eq:forch}
   \frac{P_e^2 - P_s^2}{2 \ P \ L} = \frac{\mu}{k_1} \ v_s + \frac{\rho}{k_2}v_s^2
 \end{equation}
-
-Onde $P_e$ e $P_s$ são as pressões absolutas na entrada e na saída da amostra
+onde $P_e$ e $P_s$ são as pressões absolutas na entrada e na saída da amostra
 medidas em atm, $P$ é a pressão a uma determinada vazão de ar, $L$ é a espessura
 da amostra em mm, $\mu$ é a viscosidade do ar medida em Pa s, $\rho$ é a
 densidade do ar g/cm$^3$ e $v_s$ é a velocidade do fluído em m/s.
@@ -147,8 +145,7 @@ módulo de ruptura ($\sigma_f$) foi calculado pela Equação \ref{eq:modulo_rup}
   \label{eq:modulo_rup}
   \sigma_f = \frac{3 \ P \ L}{2 \ b \ d^2}
 \end{equation}
-
-Onde $P$, é a carga de ruptura medida em N, L é a distância entre os apoios,
+onde $P$, é a carga de ruptura medida em N, L é a distância entre os apoios,
 fixa em 127 mm; b é a largura e d, a altura do corpo de prova em mm.
     
 \subsection{Termogravimetria (TGA)}\label{mat:TGA}
@@ -171,10 +168,9 @@ massa e sua taxa foram obtidas através das Equações \ref{eq:TGA_W} e
 
 \begin{equation}
   \label{eq:TGA_DTG}
-  DTG = \frac{\partial W}{\partial t}
+  DTG = \frac{d \ W}{d \ t}
 \end{equation}
-
-Onde $M_0$ é a massa inicial da amostra, $M$ é a massa observada num instante t,
+onde $M_0$ é a massa inicial da amostra, $M$ é a massa observada num instante t,
 e $M_f$ corresponde à massa final da amostra (todas medidas em gramas). $W$ é a
 perda de massa percentual, enquanto DTG é a taxa de perda de massa (medida em
 \%.min$^{-1}$). A Figura \ref{fig:TGA} apresenta o esquema de montagem do ensaio
@@ -195,7 +191,7 @@ medição se dá em um sistema de 3 tijolos com mesma composição dispostos um 
 os outros. Entalhes de 0.4mm são realizados nos tijolos usando uma retífica
 modelo Ferdimat T42 a fim de acomodar os fios do termopar.
 
-A técnica obtém o valor de condutividade através de uma estimativa baseada no
+A técnica gera o valor de condutividade através de uma estimativa baseada no
 tempo em que o calor gerado pelo fio quente (FQ), devido ao efeito Joule, leva
 para ser percebido no termopar da amostra ($T_a$) em uma condição de equilíbrio
 térmico entre o conjunto de tijolos e o forno (através da medida de um termopar

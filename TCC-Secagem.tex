@@ -31,8 +31,8 @@
 \documentclass[
 	% -- opções da classe memoir --
 	12pt,				% tamanho da fonte
-	openrany,			% capítulos não começam em pág ímpar (insere página vazia caso preciso)
-	oneside,			% para impressão em verso e anverso. Oposto a oneside
+	openright,			% capítulos não começam em pág ímpar (insere página vazia caso preciso)
+	twoside,			% para impressão em verso e anverso. Oposto a oneside
 	a4paper,			% tamanho do papel. 
 	% -- opções da classe abntex2 --
 	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
@@ -575,7 +575,7 @@ Rodrigo, Murilo, Denis, Augusto e tantos outros.
  a aplicação deste tipo de material. Um aquecimento muito rápido pode levar o
  material a trincar ou ainda explodir, devido a pressurização do vapor de água
  que estava previamente adsorvido fisicamente e também ligado quimicamente nas
- fases presentes na miscroestrutura. Assim, é comum nas indústrias o uso de
+ fases presentes na microestrutura. Assim, é comum nas indústrias o uso de
  curvas de secagem essencialmente empíricas, demasiadamente conservadoras, o que
  leva em um aumento do tempo improdutivo de reparo ou de construção do
  equipamento, um maior gasto de combustíveis fósseis e uma redução da
@@ -606,7 +606,7 @@ Rodrigo, Murilo, Denis, Augusto e tantos outros.
 The drying step of refractory concretes is one of the main points during the
 application of this type of material. A very fast heating may lead the material
 to crack or even explode due to the pressurization of the water vapor which was
-previously physically adsorbed and also chemically bound on the present phases
+previously physically adsorbed and also chemically bound in the present phases
 of the cured material. Thus, it is common to use essentially empirical drying
 curves on the industry, generally over conservative, which leads to an increase
 in the repair time of the equipment, an increase on the spending of fossil fuels
@@ -615,14 +615,14 @@ use of models to simulate the drying by predicting the pressure fields of the
 water vapor inside the microporosity becomes extremely useful. Such models are
 already used in the civil construction field, but its development resulted in
 complex models dependent on numerouss properties and complex tests. Hence, the
-present study sought to obtain a model capable of being used for the
+present study aimed obtain a model capable of being used for the
 optimization of the drying curve. This objective was accomplished when using the
 thermogravimetry analysis to adjust the isothermal sorption curves. Then,
 through a Proportional Integral Derivative controller it was possible to
 optimize a fiction heat up curve similar to the ones used in industry and to
 reduce the pressure inside the material using the same time.
 
-   \textbf{Key-words}: Refractory Castable, Spalling, Numerical Model, FEM, FEniCS.
+   \textbf{Keywords}: Refractory Castable, Spalling, Numerical Model, FEM, FEniCS.
    
  \end{otherlanguage*}
 \end{resumo}
@@ -677,7 +677,7 @@ reduce the pressure inside the material using the same time.
   \item[PTM] Ensaio de aquecimento unilateral com medidas de pressão,
     temperatura e massa
   \item[OSH] Ensaio equivalente ao PTM
-  \item[FEM] Método dos elementod finitos
+  \item[FEM] Método dos elementos finitos
   \item[P1]  Elemento polinomial linear
   \item[PID] Controlador Proporcional integral derivativo
 \end{siglas}
@@ -692,11 +692,11 @@ reduce the pressure inside the material using the same time.
   \item[$ h $] Coeficiente de transferência de calor, $W \ m^{-2} \
     ^{\circ}C^{-1}$
   \item[$ h_m $] Coeficiente de transferência de massa, $s m^{-1}$
-  \item[$ w $] Curvas de Sorção Isotérmicas, $Kg \ m^3$
-  \item[$ C_p $] Calor específico do concreto, $J \ \Kg^{-1} \ K^{-1}$
-  \item[$ \rho $]  Densidade do concreto, $Kg \ m^{-1}$
-  \item[$ \C_w $]  Calor específico da àgua, $J \ \Kg^{-1} \ K^{-1}$
-  \item[$ \C_a $] Calor latente de evaporação da água $J \ Kg^{-1}$
+  \item[$ w $] Curvas de Sorção Isotérmicas, $kg \ m^3$
+  \item[$ C_p $] Calor específico do concreto, $J \ \kg^{-1} \ K^{-1}$
+  \item[$ \rho $]  Densidade do concreto, $kg \ m^{-1}$
+  \item[$ \C_w $]  Calor específico da àgua, $J \ \kg^{-1} \ K^{-1}$
+  \item[$ \C_a $] Calor latente de evaporação da água $J \ kg^{-1}$
   \item[$ \lambda $] Condutividade térmica, $W \ m^{-1} \ ^{\circ}C^{-1}$
   \item[$ \Omega $] Domínio do modelo, $-$ 
   \item[$ \Gamma_D $] Contorno sujeito a uma condição de contorno de Dirichlet, $-$
@@ -706,8 +706,8 @@ reduce the pressure inside the material using the same time.
   \item[$ g $] Aceleração da gravidade, $m \ s^{-2}$
   \item[$ \mathbf{n} $] Vetor normal à superfície, $-$
   \item[$ w_0 $]  Massa de água para saturação de concreto a temperatura
-    ambiente, por $Kg$ de concreto, $Kg \ m^{-3}$
-  \item[$ w_c $]  Massa de cimento por $m^3$ de concreto, $Kg \ m^{-3}$
+    ambiente, por $kg$ de concreto, $kg \ m^{-3}$
+  \item[$ w_c $]  Massa de cimento por $m^3$ de concreto, $kg \ m^{-3}$
   \item[$ \Delta T $] Aumento da temperatura na face quente obtida pelo
     controlador PID, $ ^{\circ}C $ 
   \item[$ K_p $] Coeficiente do termo proporcional do controlador PID, $-$
@@ -717,7 +717,7 @@ reduce the pressure inside the material using the same time.
     pressão de limite, $ Pa $
   \item[$ \tau $] Variável de integração com respeito ao tempo 
   \item[$ P_v^{max} $] Pressão máxima no tempo $t$, $ Pa $
-  \item[$ \sigma_f $] Resistência Mecânica à flexão 3 pontos, $MPa$
+  \item[$ \sigma_f $] Resistência mecânica à flexão 3 pontos, $MPa$
     
 \end{simbolos}
 

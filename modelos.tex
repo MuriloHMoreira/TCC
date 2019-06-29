@@ -1,5 +1,5 @@
 \section{Modelos de Secagem}\label{modelos}
-Inúmeros esforços estão sendo reportados na literatura para a simulação do fluxo
+Inúmeros esforços estão sendo reportados na literatura para a simulação do escoamento
 de fluídos em meios porosos, sendo que a secagem de concretos refratários é apenas uma das
 inúmeras aplicações em que tal fenômeno é observado, havendo ainda
 aplicações em tópicos de geofísica (movimentação de corpos hídricos em subsolo),
@@ -22,8 +22,8 @@ Conforme descrito por Luikov, o transporte de massa dentro de uma matriz porosa
 (como concretos, onde apesar de serem classificados como materiais densos
 apresentam uma microporosidade conectada em sua microestrutura)
 pode se dar tanto no estado gasoso quanto no estado líquido. No estado gasos o
-fluxo se dá pelo movimento do vapor e da mistura de gases através da difusão a
-nível molecular e molar através da filtração, isto é, o fluxo decorrente
+escoamento se dá pelo movimento do vapor e da mistura de gases através da difusão a
+nível molecular e molar através da filtração, isto é, o escoamento decorrente
 da queda de pressão da mistura vapor-gás no interior do material. Já o movimento
 do líquido pode decorrer também por difusão, filtração devido ao gradiente de
 pressão ou ainda por absorção capilar nas camadas adsorvidas.
@@ -49,10 +49,10 @@ direcionada com grande foco para a aplicação em questão. A presente seção u
 uma notação próxima à utilizada pelo autor, porém alguns termos serão adaptados
 para conferir uma maior clareza e coerência com os modelos aqui utilizados.
 
-A formulação de Ba\v{z}ant se inícia através da definição do fluxo mássico de
+A formulação de Ba\v{z}ant se inícia com a definição do fluxo mássico de
 uma única fase que representa a água líquida, o vapor e o ar dentro do sistema,
 obedecendo à da Lei de Darcy e do fluxo de Soret, e do fluxo de energia térmica
-através da lei de Fourier e do fluxo de Dofour \cite{bazant1978thermal,
+por meio da lei de Fourier e do fluxo de Dofour \cite{bazant1978thermal,
   bazant1978, bavzant1982, bazant1979}:
 
 \begin{equation}
@@ -144,8 +144,7 @@ intervalo que interpola linearmente tais valores:
     (1 + 3 \ \epsilon^v)\frac{n}{v} & 1.04\leq h(P, T)
   \end{cases}
 \end{equation}
-    
-Onde na região insaturada ($h(P, T) \leq 0.96$) $w_c$ é a quantidade de cimento
+onde na região insaturada ($h(P, T) \leq 0.96$) $w_c$ é a quantidade de cimento
 em $kg$ por $m^3$ de concreto, $w_0$ é a quantidade inicial de água em $kg$ por
 $m^3$ de concreto e $\frac{1}{m(T)}$ é uma correlação empírica que envolve a
 dependência da tensão superficial da água com a temperatura, bem como quaisquer
@@ -181,11 +180,11 @@ poros, o que aumenta o volume livre do sistema.
 O tratamento dado a permeabilidade por Ba\v{z}ant justifica a sua hipótese de
 que o transporte de água no material se dá por um único fluído que representa o
 vapor de água, o líquido e a água adsorvida. Isto se dá pelo fato de que,
-especialmente em temperaturas inferiores a 100$^{\circ}$, a capilaridade interna
+especialmente em temperaturas inferiores a 100$^{\circ}$C, a capilaridade interna
 do material não é totalmente contínua apresentando empescoçamentos que controlam
 a permeabilidade efetiva do material \cite{bazant1978}.
 
-Portanto, em baixas temperaturas (abaixo de 95$^{\circ}$) a energia de ativação
+Portanto, em baixas temperaturas (abaixo de 95$^{\circ}$C) a energia de ativação
 para a migração de água nas camadas de água adsorvida na região de
 empescoçamento ($f_2(T)$) e o transporte de umidade nessa região controlam
 ($f_1(h)$) a permeabilidade do material conforme descrito pela equação
@@ -206,10 +205,9 @@ Onde,
   \label{eq:f1}
   f_1(h) = \alpha + \frac{1-\alpha}{1+\left(\frac{1-h}{1-h_t}\right)^4} 
 \end{equation}
-
 e $\alpha$ representa a largura das regiões de empescoçamento como uma função
 linear da temperatura (sendo que varia de 0.05 em temperatura ambiente e 1 à
-95$^{\circ}$)e $h_t$ é a umidade de transição (equivalente a 0.75). Além disso,
+95$^{\circ}$C)e $h_t$ é a umidade de transição (equivalente a 0.75). Além disso,
 define-se $f_2(T)$ como uma equação do tipo Arhenius:
 \begin{equation}
   \label{eq:f2}
@@ -218,7 +216,7 @@ define-se $f_2(T)$ como uma equação do tipo Arhenius:
     
     
 Em temperaturas superiores a $95^{\circ}$ ainda considera-se o efeito da energia
-de ativação para a temperatura de $95^{\circ}$ (termo $f_2(T)$ ainda é
+de ativação para esta temperatura (termo $f_2(T)$ ainda é
 multiplicado na Equação \ref{eq:baz_perm}), além de se considerar uma função
 que cause o aumento de duas ordens de grandeza na permeabilidade decorrente da
 transição do regime regido pela energia de ativação do transporte de água
@@ -229,8 +227,7 @@ do cimento hidratado, conforme descreve $f_3{T}$:
   \label{eq:f3}
   f_3(T) = \exp{\left( \frac{T-95}{0.881+0.214 \ (T-95)} \right)}
 \end{equation}
-
-Onde as constantes numéricas foram determinadas pela interpolação de dados
+onde as constantes numéricas foram determinadas pela interpolação de dados
 experimentais.
 
 Considerando as variáveis dependentes da temperatura e pressão, a quantidade de
@@ -251,7 +248,7 @@ abordadas quanto em outras áreas como a de secagem de concretos refratários.
 \subsection{Modelos derivados de Ba\v{z}ant}\label{sec:deriv_bazant}
 A presente seção introduz apenas superficialmente os modelos derivados dos
 trabalhos de Ba\v{z}ant, portanto questões específicas estão fora do escopo
-desta segmento. Para maiores detalhes referencia-se aos trabalhos dos respectivos
+deste segmento. Para maiores detalhes referencia-se aos trabalhos dos respectivos
 autores. Tal decisão justifica-se pelo fato de que nesta parte busca-se traçar
 uma visão geral do desenvolvimento dessa área, além disso aspectos do modelo
 utilizado serão mais detalhados no Apêndice A.
@@ -259,7 +256,7 @@ utilizado serão mais detalhados no Apêndice A.
 \subsubsection{Modelo de Gong}
 O modelo utilizado no presente trabalho baseia-se no modelo de Gong
 \cite{Gong1995a} qu, por sua vez, é extremamente similar ao de Ba\v{z}ant,
-distinguindo-se apenas pelas propriedades e condições de controno
+distinguindo-se apenas pelas propriedades e condições de contorno
 empregadas, pois este modelo visa a simulação da secagem de
 concretos refratários.
     

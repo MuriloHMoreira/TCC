@@ -8,8 +8,10 @@ possível observar que o primeiro objetivo foi contemplado. Porém, a
 maior contribuição do projeto está na proposta de trabalho, que ao invés de
 utilizar do ensaio de TGA como uma ferramenta de validação (o que fora proposto
 como objetivo), passa a observar tal ensaio como uma ferramenta para a obtenção
-das curvas de sorção isotérmica (seja manualmente ou através da solução do
-problema inverso).
+indireta das curvas de sorção isotérmica (seja manualmente ou através da solução do
+problema inverso), contemplando também quaisquer erros das medidas experimentais
+das outras propriedades do material e possíveis erros das suposições assumidas
+no modelamento matemático.
 
 Assim, a comparação dos dados experimentais, mostrou que o modelo apresentou uma
 certa coerência qualitativa com os dados experimentais, apresentando o material
@@ -32,9 +34,9 @@ pode ser resumida nas etapas:
   \item Calibração das curvas de sorção isotérmica a partir de um ensaio de TGA;
   \item Validação do modelo através de um ensaio de aquecimento unilateral
     (ensaio PTM);
-  \item Uso do controlador PID a partir da pressão limite estimada a partir da
-    resistência mecânica do material, em uma simulação da geometria final da
-    peça a ser seca.
+  \item Uso do controlador PID a partir da pressão limite estimada tomando como
+    referência a resistência mecânica do material, em uma simulação da geometria
+    final da peça a ser seca.
 \end{itemize}
 
 Dessa forma, seria possível obter uma solução orientada a cada contexto
